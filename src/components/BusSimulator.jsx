@@ -29,6 +29,11 @@ export default function BusSimulator() {
 		setLog((currLog) => [...currLog, message]);
 	}
 
+	// clears log
+	function handleClearLog() {
+		setLog([]);
+	}
+
 	// Sets device state to requesting if request button is pressed
 	function handleRequest(id) {
 		setDevices((currDevices) => ({ ...currDevices, [id]: "requesting" }));
@@ -99,6 +104,7 @@ export default function BusSimulator() {
 
 			<div>
 				<h4>Transaction Log</h4>
+				<button onClick={handleClearLog}>Clear Log</button>
 				{log.length === 0 && <p>No activity yet.</p>}
 				{log.map((message, i) => (
 					<p key={i}>{message}</p>
