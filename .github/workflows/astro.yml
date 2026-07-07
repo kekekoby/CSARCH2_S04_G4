@@ -68,9 +68,15 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
         run: |
+          BASE="${{ steps.pages.outputs.base_path }}"
+          if [ -z "$BASE" ]; then
+            BASE="/"
+          else
+            BASE="${BASE%/}/"
+          fi
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \
-            --base "${{ steps.pages.outputs.base_path }}"
+            --base "$BASE"
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
