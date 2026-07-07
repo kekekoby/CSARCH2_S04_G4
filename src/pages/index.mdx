@@ -27,7 +27,7 @@ import "../styles/exhibit-custom.css"
 
   <div class="landing__content">
     <span class="slide__eyebrow">Computer Architecture Virtual Exhibit</span>
-    <h1>A Deep Dive Into the Bus System</h1>
+    <h1 class="landing__hero-title">A Deep Dive Into the Bus System</h1>
     <p class="landing__authors">
       Go, Justin · Leung, Jillianne · Luna, Jacoba · Montaño, Rovin · Teoxon, Jat
     </p>
@@ -48,6 +48,7 @@ import "../styles/exhibit-custom.css"
 </section>
 
 <script is:inline>
+  document.body.classList.add("exhibit-landing");
   const last = localStorage.getItem("bus-last-page");
   const continueLink = document.getElementById("continue-link");
   if (last && continueLink) continueLink.href = last;
