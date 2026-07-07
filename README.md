@@ -36,10 +36,13 @@ Another problem I faced was how to shorten the content while keeping it complete
 Designing the website was also challenging since I had to search Pinterest for a theme I would like to incorporate, and I ended up with a retro-futuristic style. We also had to work around template restrictions (we could not edit `global.css` or layout files), so I moved our custom styling into `exhibit-custom.css` and dealt with CSS conflicts between the template defaults and our design. That took more trial and error than expected, but it helped us keep a distinct look without breaking the required template structure.
 
 ### Justin
-<!-- Add your insights and reflection here -->
-- **Aha moments / things learned:**
-- **Challenges faced:**
-- **Creative contributions:**
+
+This project introduced to me astro and the other components needed for this project. Though I am not familiar with them, atleast they have similar syntax to other languages I know. 
+
+The challenge I faced in this is trying to balance our deadline and other subjects deadlines. Another challenge was also trying to learn how to use the tools needed for this project.
+
+Some design contributions I had was fixing the text in the content displays we have. Another one is adding diagrams for each section. Though I am not really a creative person, I help out in making our content pleasant and readable to the eye.
+
 
 ### Jillianne
 <!-- Add your insights and reflection here -->
