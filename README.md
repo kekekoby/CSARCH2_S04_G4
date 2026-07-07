@@ -39,6 +39,7 @@ Designing the website was also challenging since I had to search Pinterest for a
 
 This project introduced to me astro and the other components needed for this project. Though I am not familiar with them, atleast they have similar syntax to other languages I know. 
 
+
 The challenge I faced in this is trying to balance our deadline and other subjects deadlines. Another challenge was also trying to learn how to use the tools needed for this project.
 
 Some design contributions I had was fixing the text in the content displays we have. Another one is adding diagrams for each section. Though I am not really a creative person, I help out in making our content pleasant and readable to the eye.
