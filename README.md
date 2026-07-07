@@ -49,10 +49,10 @@ One challenge was integrating the simulator with the rest of the exhibit while e
 I helped integrate the interactive bus arbitration into the exhibit
 
 ### Jacoba
-<!-- Add your insights and reflection here -->
 - **Aha moments / things learned:**
-- **Challenges faced:**
-- **Creative contributions:**
+This project gave me more insight into bus arbitration and the different methods. I found it to be very interesting, and once again am really interested in the simple but effective way a lot of computer systems work.
+A problem I faced was mostly in terms of time management. I had originally planned to start working on this way back in ILW, but unfortunately got a sickness during that time. Other than that, better communication from the group would have benefited the project.
+I did the implementation of fixed priority and daisy chain, the implementation of the simulation, and the respective CSS for it.
 
 ### Jat
 <!-- Add your insights and reflection here -->
