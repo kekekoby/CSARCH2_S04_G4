@@ -13,8 +13,14 @@ function resolveFixedPriority(requestingIds) {
 /*
 ROUND ROBIN
 */
-function resolveRoundRobin(requestingIds) {
-
+function resolveRoundRobin(requestingIds, lastGrantedIndex) {
+	for (let i = 1; i <= PRIORITY_ORDER.length; i++){
+		const candidate = PRIORITY_ORDER[(lastGrantedIndex + i) % PRIORITY_ORDER.length];
+		if (requestingIds.includes(candidate)){
+			return candidate;
+		}
+	}
+	return null;
 }
 
 /*
@@ -36,6 +42,9 @@ export default function BusSimulator() {
 		dma: "idle",
 		disk: "idle",
 	});
+
+	// Record the last winner for Round Robin
+	const [lastGrantedIndex, setLastGrantedIndex] = useState(-1);
 
 	// log at the bottom that notes all taken actions
 	const [log, setLog] = useState([]);
@@ -61,6 +70,8 @@ export default function BusSimulator() {
 		// gets all requesting devices, determines winner
 		const requestingIds = Object.keys(devices).filter((id) => devices[id] === "requesting");
 
+		let winner = null;
+
 		if (mode === "fixed") {
 			winner = resolveFixedPriority(requestingIds);
 		} else if (mode === "roundrobin") {
@@ -73,6 +84,9 @@ export default function BusSimulator() {
 			addLog("Arbitrate pressed, but no devices are requesting.");
 			return;
 		}
+
+		// Record the last device to be granted
+		setLastGrantedIndex(PRIORITY_ORDER.indexOf(winner));
 
 		// if device won, give it granted status, ortherwise denied
 		setDevices((currDevices) => {
