@@ -1,0 +1,53 @@
+---
+layout: '../layouts/ExhibitLayout.astro'
+title: "Simulator"
+author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Jat"
+---
+
+<div class="page-panel">
+  <div class="section-layout">
+    <aside class="section-aside">
+      <h3>Section 4 of 4</h3>
+      <p><strong>Focus:</strong> Bus Arbiter interactive demo</p>
+      <div class="section-nav-grid">
+        <a href="/arbitration-modes">Previous: Arbitration Modes</a>
+        <a href="/">Back to title</a>
+      </div>
+    </aside>
+
+    <div class="section-main">
+      <span class="slide__eyebrow">Section 4</span>
+      <h1>Bus Arbiter Simulator</h1>
+
+      <p>Users see a diagram with:</p>
+      <ul>
+        <li>Three devices: CPU (left), DMA Controller (center), Disk I/O (right)</li>
+        <li>One shared bus (horizontal line connecting all three)</li>
+        <li>Arbiter block (center-top, acting as traffic cop)</li>
+      </ul>
+
+      <div class="sim-placeholder">
+        Placeholder for <code>&lt;BusArbiterSimulator client:load /&gt;</code>
+      </div>
+
+      <div class="card">
+        <h3>User interaction flow (proposal-based)</h3>
+        <ol>
+          <li>User selects arbitration mode (dropdown).</li>
+          <li>User clicks Request Bus on CPU and/or DMA/Disk to queue requests.</li>
+          <li>Arbiter processes queue based on selected priority mode.</li>
+          <li>Winner turns green and pulse animation travels across the bus.</li>
+          <li>After transfer, winner releases bus and next request is handled.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Planned visual feedback</h3>
+        <p>
+          Requesting device blinks yellow, granted device turns green, denied devices turn
+          red and remain in queue. A transaction log displays cycle-by-cycle events.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

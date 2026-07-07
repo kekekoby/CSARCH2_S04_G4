@@ -1,6 +1,53 @@
 ---
-layout: '../layouts/HomepageLayout.astro'
-title: "Computer Architecture is Forever"
+layout: '../layouts/ExhibitLayout.astro'
+title: "A Deep Dive Into the Bus System"
+author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Jat"
+hideHeader: true
 ---
 
-[Linux](linux)
+import busImage from "../assets/ComputerThatIsABus.svg"
+
+<section class="landing">
+  <div class="landing__media">
+    <div class="landing__visual">
+      <img src={busImage.src ?? busImage} alt="Computer bus system illustration" class="landing__visual-image" />
+    </div>
+    <div class="landing__image-note" aria-label="image attribution">
+      <span class="landing__image-note-text">
+        Image is AI-generated using Google Gemini's Nano Banana 2 model.
+      </span>
+    </div>
+
+    <div class="landing__buttons">
+      <a class="landing__button landing__button--primary" href="/shared-bus-problem">Get Started</a>
+      <a id="continue-link" class="landing__button landing__button--secondary" href="/shared-bus-problem">Continue where you left off</a>
+    </div>
+  </div>
+
+  <div class="landing__content">
+    <span class="slide__eyebrow">Computer Architecture Virtual Exhibit</span>
+    <h1>A Deep Dive Into the Bus System</h1>
+    <p class="landing__authors">
+      Go, Justin · Leung, Jillianne · Luna, Jacoba · Montaño, Rovin · Teoxon, Jat
+    </p>
+
+    <p>
+      Modern computer systems contain multiple components that need access to a common
+      communication channel called the <strong>system bus</strong>. The CPU, memory
+      controller, DMA controller, storage devices, and peripherals may all attempt to
+      use the bus simultaneously. Without a mechanism to control access, data collisions
+      and system instability would occur.
+    </p>
+
+    <p>
+      This exhibit explains how <strong>bus arbitration</strong> decides which device
+      gets control of the bus when several devices request access at the same time.
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+  const last = localStorage.getItem("bus-last-page");
+  const continueLink = document.getElementById("continue-link");
+  if (last && continueLink) continueLink.href = last;
+</script>

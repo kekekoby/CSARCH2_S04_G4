@@ -1,0 +1,64 @@
+---
+layout: '../layouts/ExhibitLayout.astro'
+title: "Arbitration Modes"
+author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Jat"
+---
+
+<div class="page-panel">
+  <div class="section-layout">
+    <aside class="section-aside">
+      <h3>Section 3 of 4</h3>
+      <p><strong>Focus:</strong> Fixed Priority, Round-Robin, Daisy Chain</p>
+      <div class="section-nav-grid">
+        <a href="/design-tradeoffs">Previous: Design Trade-offs</a>
+        <a href="/simulator">Next: Simulator</a>
+      </div>
+    </aside>
+
+    <div class="section-main">
+      <span class="slide__eyebrow">Section 3</span>
+      <h1>Types of Arbitration Modes</h1>
+
+      <div class="card">
+        <h3>Fixed Priority</h3>
+        <p>
+          The arbiter holds a simple priority encoder. When multiple BR signals are
+          asserted simultaneously, the encoder selects the highest-priority line and
+          asserts BG only for that device. Lower-priority devices receive no grant and
+          must wait.
+        </p>
+        <p>
+          <strong>Pros:</strong> deterministic and simple hardware; critical devices get
+          immediate access. <strong>Cons:</strong> low-priority devices may starve.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Round-Robin</h3>
+        <p>
+          The arbiter maintains a rotating pointer. After granting the bus to device N,
+          the pointer advances to N+1, making N+1 highest priority for the next cycle.
+          This guarantees each requester eventually gets access.
+        </p>
+        <p>
+          <strong>Pros:</strong> no starvation, fair and predictable access.
+          <strong>Cons:</strong> more complex hardware and urgent devices may wait longer.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Daisy Chain</h3>
+        <p>
+          A single bus grant wire threads through all devices in sequence. The first
+          requesting device in the chain captures the grant. If it has no request, it
+          passes the grant downstream.
+        </p>
+        <p>
+          <strong>Pros:</strong> very few wires and low hardware cost.
+          <strong>Cons:</strong> priority depends on physical position, propagation delay
+          grows with chain length, and a broken device can break the chain.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+---
+layout: '../layouts/ExhibitLayout.astro'
+title: "Shared Bus Problem"
+author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Jat"
+---
+
+<div class="page-panel">
+  <div class="section-layout">
+    <aside class="section-aside">
+      <h3>Section 1 of 4</h3>
+      <p><strong>Focus:</strong> Purpose of a bus arbiter</p>
+      <p><strong>Core signals:</strong> BR, BG, BBSY</p>
+      <div class="section-nav-grid">
+        <a href="/">Title page</a>
+        <a href="/design-tradeoffs">Next: Design Trade-offs</a>
+      </div>
+    </aside>
+
+    <div class="section-main">
+      <span class="slide__eyebrow">Section 1</span>
+      <h1>Purpose of a Bus Arbiter</h1>
+
+      <p>
+        A computer bus is a communication channel carrying data, addresses, and control
+        signals between different components. The bus is shared between multiple devices,
+        and only one device can drive it at a time. If two devices try to transmit
+        simultaneously, their signals corrupt each other, creating what is known as a
+        <strong> bus conflict</strong>.
+      </p>
+
+      <p>
+        A bus arbiter is a hardware unit that works towards preventing these bus conflicts
+        from happening. Devices signal to the bus arbiter that they would like to use the
+        bus by sending a Bus Request (<strong>BR</strong>) line, and the arbiter responds
+        with a Bus Grant (<strong>BG</strong>) line to one device at a time. The device
+        that receives the BG will then assert Bus Busy (<strong>BBSY</strong>) to signal
+        that the bus is in use. When the device is finished transferring data, it lifts
+        the BBSY.
+      </p>
+
+      <div class="card">
+        <h3>Why this matters</h3>
+        <p>
+          This method not only ensures that bus conflicts will not occur, but also that
+          the bus is used in an orderly manner and all requests are handled systematically.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
