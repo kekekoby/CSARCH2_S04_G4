@@ -10,7 +10,7 @@ export const base = import.meta.env.BASE_URL;
 <div class="page-panel">
   <div class="section-layout">
     <aside class="section-aside">
-      <h3>Design Trade-offs (Section 2 of 4)</h3>
+      <h3>Design Trade-offs (Section 2 of 5)</h3>
       <p><strong>Focus:</strong> Key design considerations</p>
       <div class="section-nav-grid">
         <a href={`${base}shared-bus-problem/`}>Previous: Shared Bus Problem</a>
@@ -34,7 +34,8 @@ export const base = import.meta.env.BASE_URL;
         <p>
           System architects must balance equitable access among all devices against the
           prioritization of critical operations. Fairness prevents starvation, while
-          prioritizing urgency guarantees responsiveness to time-sensitive operations.
+          prioritizing urgency guarantees responsiveness to time-sensitive operations
+          (Stallings, 2016).
         </p>
       </div>
 
@@ -45,7 +46,7 @@ export const base = import.meta.env.BASE_URL;
           (centralized) or dispersed across multiple devices on the bus (distributed).
           Centralized architectures simplify control logic but introduce a single point of
           failure. Distributed architectures improve fault tolerance but require more
-          complex coordination protocols.
+          complex coordination protocols (Null &amp; Lobur, 2014).
         </p>
       </div>
 
@@ -54,7 +55,8 @@ export const base = import.meta.env.BASE_URL;
         <p>
           The arbitration process consumes system clock cycles: devices assert request
           lines, the arbiter evaluates priorities, and grant signals propagate back. During
-          this evaluation phase, the bus remains idle. This delay is arbitration latency.
+          this evaluation phase, the bus remains idle. This delay is arbitration latency
+          (Patterson &amp; Hennessy, 2013).
         </p>
       </div>
     </div>

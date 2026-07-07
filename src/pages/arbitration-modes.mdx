@@ -10,7 +10,7 @@ export const base = import.meta.env.BASE_URL;
 <div class="page-panel">
   <div class="section-layout">
     <aside class="section-aside">
-      <h3>Arbitration Modes (Section 3 of 4)</h3>
+      <h3>Arbitration Modes (Section 3 of 5)</h3>
       <p><strong>Focus:</strong> Fixed Priority, Round-Robin, Daisy Chain</p>
       <div class="section-nav-grid">
         <a href={`${base}design-tradeoffs/`}>Previous: Design Trade-offs</a>
@@ -32,7 +32,8 @@ export const base = import.meta.env.BASE_URL;
         </p>
         <p>
           <strong>Pros:</strong> deterministic and simple hardware; critical devices get
-          immediate access. <strong>Cons:</strong> low-priority devices may starve.
+          immediate access. <strong>Cons:</strong> low-priority devices may starve (Stallings,
+          2016).
         </p>
       </div>
 
@@ -41,7 +42,7 @@ export const base = import.meta.env.BASE_URL;
         <p>
           The arbiter maintains a rotating pointer. After granting the bus to device N,
           the pointer advances to N+1, making N+1 highest priority for the next cycle.
-          This guarantees each requester eventually gets access.
+          This guarantees each requester eventually gets access (Tanenbaum &amp; Austin, 2012).
         </p>
         <p>
           <strong>Pros:</strong> no starvation, fair and predictable access.
@@ -59,7 +60,8 @@ export const base = import.meta.env.BASE_URL;
         <p>
           <strong>Pros:</strong> very few wires and low hardware cost.
           <strong>Cons:</strong> priority depends on physical position, propagation delay
-          grows with chain length, and a broken device can break the chain.
+          grows with chain length, and a broken device can break the chain (Null &amp; Lobur,
+          2014).
         </p>
       </div>
     </div>
