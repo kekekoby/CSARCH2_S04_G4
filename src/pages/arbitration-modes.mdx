@@ -5,6 +5,7 @@ author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Ja
 ---
 
 import "../styles/exhibit-custom.css"
+import roundRobinImg from '../assets/RoundRobin.png';
 export const base = import.meta.env.BASE_URL;
 
 <div class="page-panel">
@@ -15,6 +16,15 @@ export const base = import.meta.env.BASE_URL;
       <div class="section-nav-grid">
         <a href={`${base}design-tradeoffs/`}>Previous: Design Trade-offs</a>
         <a href={`${base}simulator/`}>Next: Simulator</a>
+      </div>
+
+      <div class="single-image-container">
+        <img 
+          src={roundRobinImg.src} 
+          alt="Round-robin arbitration mode diagram"
+          class="single-image"
+        />
+        <p class="image-caption">Figure 1: Round-robin arbitration mode</p>
       </div>
     </aside>
 

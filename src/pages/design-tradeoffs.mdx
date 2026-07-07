@@ -5,6 +5,7 @@ author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Ja
 ---
 
 import "../styles/exhibit-custom.css"
+import tradeOffImg from '../assets/tradeOff.png';
 export const base = import.meta.env.BASE_URL;
 
 <div class="page-panel">
@@ -15,6 +16,15 @@ export const base = import.meta.env.BASE_URL;
       <div class="section-nav-grid">
         <a href={`${base}shared-bus-problem/`}>Previous: Shared Bus Problem</a>
         <a href={`${base}arbitration-modes/`}>Next: Arbitration Modes</a>
+      </div>
+
+      <div class="single-image-container">
+        <img 
+          src={tradeOffImg.src} 
+          alt="Design trade-offs in bus arbitration"
+          class="single-image"
+        />
+        
       </div>
     </aside>
 
