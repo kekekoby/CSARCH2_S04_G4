@@ -1,4 +1,98 @@
-# A Deep Dive Into the Bus System
+# Incremental README — Development Log
+
+**Group 4:** Go, Justin · Leung, Jillianne · Luna, Jacoba · Montaño, Rovin · Teoxon, Jat  
+**Exhibit:** A Deep Dive Into the Bus System  
+**Last updated:** July 7, 2026
+
+---
+
+## Things Done (Milestone Progress)
+
+### July 5, 2026
+- Added initial project files and proposal-based exhibit content.
+
+### July 7, 2026
+- Aligned project dependencies with **Astro 6** and updated Node requirements for CI.
+- Built the multi-page exhibit structure (landing page + four section pages).
+- Applied the retro-futuristic theme and landing page layout (hero visual, navigation buttons, section dropdown).
+- Drafted section content and added page-to-page navigation.
+- Fixed routing for GitHub Pages base path and resolved CSS/link issues with `exhibit-custom.css`.
+- Started the Bus Arbiter Simulator component and styling.
+- Polished readability and section headers for the exhibit pages.
+
+---
+
+## Insights and Reflection
+
+### Rovin
+Our struggles were definitely rooted in synchronizing our free time as a group. Even though we had an entire week to accomplish the project, we still only started planning and moving about during the weekend after the passing of Milestone #2.
+
+As a retaker of this course, I realized how hectic the academic load was for the second years I am taking the class with, and also for me as someone nearing the end of my third year and taking this class for a second time.
+
+Definitely, one challenge for me was learning about Astro since I had not encountered it before, but it is actually easier to adapt once you get the hang of it compared to other frameworks. I learned that Astro and MDX work well for mixing content with interactive components, but routing needs extra care—especially with GitHub Pages base paths, where links can break if they are not base-aware.
+
+Another problem I faced was how to shorten the content while keeping it complete, since I realized that content that was too text-heavy may turn off those who will look at the exhibit. Splitting the exhibit into separate section pages instead of one long scroll helped make it feel more guided and readable.
+
+Designing the website was also challenging since I had to search Pinterest for a theme I would like to incorporate, and I ended up with a retro-futuristic style. We also had to work around template restrictions (we could not edit `global.css` or layout files), so I moved our custom styling into `exhibit-custom.css` and dealt with CSS conflicts between the template defaults and our design. That took more trial and error than expected, but it helped us keep a distinct look without breaking the required template structure.
+
+### Justin
+<!-- Add your insights and reflection here -->
+- **Aha moments / things learned:**
+- **Challenges faced:**
+- **Creative contributions:**
+
+### Jillianne
+<!-- Add your insights and reflection here -->
+- **Aha moments / things learned:**
+- **Challenges faced:**
+- **Creative contributions:**
+
+### Jacoba
+<!-- Add your insights and reflection here -->
+- **Aha moments / things learned:**
+- **Challenges faced:**
+- **Creative contributions:**
+
+### Jat
+<!-- Add your insights and reflection here -->
+- **Aha moments / things learned:**
+- **Challenges faced:**
+- **Creative contributions:**
+
+---
+
+## Things To Be Done (Final Submission)
+
+### Group-wide priorities
+- [ ] Iron out the **Bus Arbiter Simulator** (request/grant/release flow, queue behavior, and transaction log).
+- [ ] Make the website **more interactive** beyond static text sections.
+- [ ] Improve **design cohesion** across all pages (we rushed some styling decisions).
+- [ ] Finalize and proofread section content so wording matches the approved proposal where needed.
+- [ ] Test navigation and deployment on GitHub Pages end-to-end.
+
+### Justin
+<!-- Add your final submission tasks here -->
+- [ ]
+
+### Jillianne
+<!-- Add your final submission tasks here -->
+- [ ]
+
+### Jacoba
+<!-- Add your final submission tasks here -->
+- [ ]
+
+### Rovin
+<!-- Add your final submission tasks here -->
+- [ ]
+
+### Jat
+<!-- Add your final submission tasks here -->
+- [ ]
+
+---
+
+# Project Proposal (Original)
 
 **Member 1:** Go, Justin  
 **Member 2:** Leung, Jillianne  
