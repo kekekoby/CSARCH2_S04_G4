@@ -5,20 +5,21 @@ author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Ja
 ---
 
 import "../styles/exhibit-custom.css"
+export const base = import.meta.env.BASE_URL;
 
 <div class="page-panel">
   <div class="section-layout">
     <aside class="section-aside">
-      <h3>Section 3 of 4</h3>
+      <h3>Arbitration Modes (Section 3 of 4)</h3>
       <p><strong>Focus:</strong> Fixed Priority, Round-Robin, Daisy Chain</p>
       <div class="section-nav-grid">
-        <a href="/design-tradeoffs">Previous: Design Trade-offs</a>
-        <a href="/simulator">Next: Simulator</a>
+        <a href={`${base}design-tradeoffs/`}>Previous: Design Trade-offs</a>
+        <a href={`${base}simulator/`}>Next: Simulator</a>
       </div>
     </aside>
 
     <div class="section-main">
-      <span class="slide__eyebrow">Section 3</span>
+      <span class="slide__eyebrow">Arbitration Modes</span>
       <h1>Types of Arbitration Modes</h1>
 
       <div class="card">
