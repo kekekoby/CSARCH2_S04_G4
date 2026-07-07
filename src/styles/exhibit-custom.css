@@ -102,6 +102,9 @@ body {
     font-size: 0.98rem;
     white-space: nowrap;
     background: #121a33;
+
+   letter-spacing: 2px;
+    
 }
 
 .landing__button--primary {
@@ -166,6 +169,7 @@ body {
     font-family: "Orbitron", sans-serif;
     font-size: 0.84rem;
     background: rgba(18, 26, 51, 0.6);
+    letter-spacing: 2px;
 }
 
 .slide__eyebrow {
@@ -226,6 +230,9 @@ body {
 .page-panel h3 {
     font-family: "Orbitron", "Montserrat Variable", sans-serif;
     line-height: 1.25;
+    font-weight: lighter;
+    letter-spacing: 4px;
+    font-weight: bold;
     color: #e6eeff;
 }
 
@@ -271,6 +278,7 @@ body {
     border-radius: 10px;
     padding: 0.45rem 0.6rem;
     background: #121a33;
+    letter-spacing: 1px;
 }
 
 .card {
