@@ -191,6 +191,26 @@ export default function BusSimulator() {
 					<p key={i}>{message}</p>
 					))}
 				</div>
+
+				<h3>Important note</h3>
+				<p>
+				Daisy Chain and Fixed Priority produce the exact same results.
+				Daisy Chain's "queue order" is just each device's physical position along the
+				grant wire, so the device closest to the arbiter is always checked first, then
+				the next, and so on. So with our device layout (CPU, then DMA, then Disk),
+				both modes hand the bus to the same device in the same situations, every time.
+				</p>
+				<p>
+				In real hardware, the two would not behave quite the same. Daisy Chain's grant
+				signal has to physically ripple down the chain wire device by device, so
+				lower priority devices wait longer for the signal to reach them, and a
+				dead or unpowered device partway down the chain would block every device behind
+				it. Fixed Priority, on the other hand, is just a rule inside the arbiter's logic,
+				so every device's request reaches the arbiter at roughly the same speed. This
+				simulation only models who wins, not how long the grant signal takes to travel,
+				so that real-world difference doesn't show up here, even though the two modes
+				are functionally the same in this simulation.
+				</p>
 			</div>
 		</div>
 	);
