@@ -10,6 +10,22 @@ function resolveFixedPriority(requestingIds) {
 	return PRIORITY_ORDER.find((id) => requestingIds.includes(id)) ?? null;
 }
 
+/*
+ROUND ROBIN
+*/
+function resolveRoundRobin(requestingIds) {
+
+}
+
+/*
+DAISY CHAIN
+Same logic as fixed priority.
+daisy chains priority order is determined by physical chain connection, just so happens its the same order as fixed
+*/
+function resolveDaisyChain(requestingIds) {
+  return PRIORITY_ORDER.find((id) => requestingIds.includes(id)) ?? null;
+}
+
 export default function BusSimulator() {
 	// Whats the current mode being used. defaults to fixed priority
 	const [mode, setMode] = useState("fixed");
@@ -44,7 +60,15 @@ export default function BusSimulator() {
 	function handleArbitrate() {
 		// gets all requesting devices, determines winner
 		const requestingIds = Object.keys(devices).filter((id) => devices[id] === "requesting");
-		const winner = resolveFixedPriority(requestingIds);
+
+		if (mode === "fixed") {
+			winner = resolveFixedPriority(requestingIds);
+		} else if (mode === "roundrobin") {
+			winner = resolveRoundRobin(requestingIds, lastGrantedIndex);
+		} else if (mode === "daisychain") {
+			winner = resolveDaisyChain(requestingIds);
+		}
+
 		if (!winner){
 			addLog("Arbitrate pressed, but no devices are requesting.");
 			return;
