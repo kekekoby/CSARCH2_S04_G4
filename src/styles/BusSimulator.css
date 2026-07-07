@@ -1,8 +1,36 @@
 .simulator {
-	background: var(--bg1);
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	padding: 1.25rem;
+	--sim-border: #273055;
+	--sim-panel: rgba(10, 16, 38, 0.7);
+	--sim-panel-alt: #121a33;
+	--sim-text: #d8e9ff;
+	--sim-muted: #94a2c8;
+	--sim-accent: #39ffb6;
+	--sim-requesting: #ffcf5c;
+	--sim-granted: #39ffb6;
+	--sim-denied: #ff5c78;
+
+	background: var(--sim-panel);
+	border: 1px solid var(--sim-border);
+	border-radius: 12px;
+	padding: 1.1rem 1.25rem 1.35rem;
+	color: var(--sim-text);
+	font-family: "Noto Sans Variable", sans-serif;
+}
+
+.simulator h3,
+.simulator h4 {
+	margin: 0 0 0.85rem;
+	font-family: "Orbitron", sans-serif;
+	letter-spacing: 2px;
+	color: #e6eeff;
+	font-weight: bold;
+}
+
+.simulator h4 {
+	font-size: 0.85rem;
+	letter-spacing: 1.5px;
+	color: var(--sim-muted);
+	text-transform: uppercase;
 }
 
 .simulator__controls {
@@ -14,43 +42,66 @@
 }
 
 .simulator__select {
-	padding: 0.4rem 0.6rem;
-	border-radius: var(--radius);
-	border: 1px solid var(--border);
-	background: var(--bg2);
-	color: var(--text);
-	font-family: inherit;
-}
-
-.simulator__button {
-	border: 1px solid var(--border);
-	background: var(--bg2);
-	color: var(--text);
-	border-radius: var(--radius);
-	padding: 0.5rem 0.9rem;
-	font-family: inherit;
+	padding: 0.5rem 0.7rem;
+	border-radius: 10px;
+	border: 1px solid var(--sim-border);
+	background: var(--sim-panel-alt);
+	color: var(--sim-text);
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.85rem;
+	letter-spacing: 1px;
 	cursor: pointer;
 }
 
+.simulator__select:focus {
+	outline: none;
+	border-color: var(--sim-accent);
+}
+
+.simulator__button {
+	border: 1px solid var(--sim-border);
+	background: var(--sim-panel-alt);
+	color: var(--sim-text);
+	border-radius: 10px;
+	padding: 0.5rem 0.9rem;
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.8rem;
+	letter-spacing: 1px;
+	cursor: pointer;
+	transition: border-color 0.15s ease, color 0.15s ease;
+}
+
 .simulator__button:hover:not(:disabled) {
-	border-color: var(--accent);
-	color: var(--accent);
+	border-color: var(--sim-accent);
+	color: var(--sim-accent);
 }
 
 .simulator__button:disabled {
-	opacity: 0.5;
+	opacity: 0.4;
 	cursor: not-allowed;
 }
 
 .simulator__arbitrate {
-	border: none;
-	background: var(--accent);
+	border: 1px solid transparent;
+	background: linear-gradient(90deg, #116848 0%, #0f355f 100%);
 	color: #fff;
-	border-radius: var(--radius);
-	padding: 0.55rem 1.1rem;
-	font-family: inherit;
+	border-radius: 10px;
+	padding: 0.55rem 1.2rem;
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.85rem;
+	letter-spacing: 2px;
 	font-weight: 600;
 	cursor: pointer;
+	box-shadow: 0 0 0 rgba(57, 255, 182, 0);
+	transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.simulator__arbitrate:hover:not(:disabled) {
+	box-shadow: 0 0 14px rgba(57, 255, 182, 0.45);
+}
+
+.simulator__arbitrate:active:not(:disabled) {
+	transform: translateY(1px);
 }
 
 .simulator__arbitrate:disabled {
@@ -61,34 +112,82 @@
 .simulator__devices {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-	gap: 0.75rem;
+	gap: 0.85rem;
 	margin-bottom: 1.25rem;
 }
 
 .device-card {
-	border: 2px solid var(--border);
-	border-radius: var(--radius);
-	padding: 0.9rem;
+	border: 1px solid var(--sim-border);
+	border-radius: 12px;
+	padding: 1rem 0.9rem;
 	text-align: center;
-	background: var(--bg2);
+	background: var(--sim-panel-alt);
+	transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.status-idle { color: var(--muted); }
-.status-requesting { color: #b8860b; }
-.status-granted { color: #2e8b45; }
-.status-denied { color: #b23b3b; }
+.device-card p {
+	margin: 0 0 0.75rem;
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.85rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.status-idle { color: var(--sim-muted); }
+
+.status-requesting {
+	color: var(--sim-requesting);
+}
+
+.status-granted {
+	color: var(--sim-granted);
+	text-shadow: 0 0 8px rgba(57, 255, 182, 0.65);
+}
+
+.status-denied {
+	color: var(--sim-denied);
+}
+
+.device-card:has(.status-requesting) {
+	border-color: var(--sim-requesting);
+	box-shadow: 0 0 10px rgba(255, 207, 92, 0.25);
+}
+
+.device-card:has(.status-granted) {
+	border-color: var(--sim-granted);
+	box-shadow: 0 0 16px rgba(57, 255, 182, 0.35);
+}
+
+.device-card:has(.status-denied) {
+	border-color: var(--sim-denied);
+	box-shadow: 0 0 10px rgba(255, 92, 120, 0.25);
+}
 
 .simulator__log {
-	background: var(--bg2);
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
+	background: var(--sim-panel-alt);
+	border: 1px solid var(--sim-border);
+	border-radius: 10px;
 	padding: 0.75rem 1rem;
 	max-height: 160px;
 	overflow-y: auto;
-	font-size: var(--small);
-	color: var(--muted);
+	font-size: 0.82rem;
+	color: var(--sim-muted);
+	font-family: "Noto Sans Variable", sans-serif;
 }
 
 .simulator__log p {
-	margin: 0.2rem 0;
+	margin: 0.25rem 0;
+}
+
+.simulator__log::-webkit-scrollbar {
+	width: 8px;
+}
+
+.simulator__log::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.simulator__log::-webkit-scrollbar-thumb {
+	background: var(--sim-border);
+	border-radius: 10px;
 }
