@@ -7,15 +7,19 @@ export default function BusSimulator() {
 		disk: "idle",
 	});
 
+	function handleRequest(id) {
+		setDevices((prev) => ({ ...prev, [id]: "requesting" }));
+	}
+
 	return (
 		<div>
 			<h3>Bus Simulator</h3>
 			<p>CPU: {devices.cpu}</p>
 			<p>DMA: {devices.dma}</p>
 			<p>Disk I/O: {devices.disk}</p>
-			<button>CPU: Request Bus</button>
-			<button>DMA: Request Bus</button>
-			<button>Disk I/O: Request Bus</button>
+			<button onClick={() => handleRequest("cpu")}>CPU: Request Bus</button>
+			<button onClick={() => handleRequest("dma")}>DMA: Request Bus</button>
+			<button onClick={() => handleRequest("disk")}>Disk I/O: Request Bus</button>
 		</div>
 	);
 }
