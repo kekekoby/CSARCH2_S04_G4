@@ -127,8 +127,13 @@ export default function BusSimulator() {
 
 	return (
 		<div className="simulator">
-			<h3>Bus Simulator</h3>
+			<h2>Bus Simulator</h2>
 
+			<h3>Remember</h3>
+			<p><strong>Fixed Priority:</strong> one device is always first in line, no matter what.</p>
+			<p><strong>Round-Robin:</strong> everyone takes turns, one after another.</p>
+			<p><strong>Daisy Chain:</strong> whoever is closest to the front of the wire gets it first.</p>
+			<h3></h3>
 			<div className="simulator__controls">
 				<select
 				className="simulator__select"
