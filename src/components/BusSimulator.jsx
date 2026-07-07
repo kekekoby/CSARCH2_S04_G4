@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../styles/BusSimulator.css';
 
 /*
 FIXED PRIORITY
@@ -125,28 +126,71 @@ export default function BusSimulator() {
 	}, [devices]);
 
 	return (
-		<div>
+		<div className="simulator">
 			<h3>Bus Simulator</h3>
-			<select value={mode} onChange={(e) => setMode(e.target.value)}>
-				<option value="fixed">Fixed Priority</option>
-				<option value="roundrobin">Round Robin</option>
-				<option value="daisychain">Daisy Chain</option>
-			</select>
-			<button onClick={handleArbitrate}>Arbitrate</button>
-			<p>CPU: {devices.cpu}</p>
-			<p>DMA: {devices.dma}</p>
-			<p>Disk I/O: {devices.disk}</p>
-			<button onClick={() => handleRequest("cpu")}>CPU: Request Bus</button>
-			<button onClick={() => handleRequest("dma")}>DMA: Request Bus</button>
-			<button onClick={() => handleRequest("disk")}>Disk I/O: Request Bus</button>
+
+			<div className="simulator__controls">
+				<select
+				className="simulator__select"
+				value={mode}
+				onChange={(e) => setMode(e.target.value)}
+				>
+					<option value="fixed">Fixed Priority</option>
+					<option value="roundrobin">Round Robin</option>
+					<option value="daisychain">Daisy Chain</option>
+				</select>
+
+				<button className="simulator__arbitrate" onClick={handleArbitrate}>
+					Arbitrate
+				</button>
+			</div>
+
+			<div className="simulator__devices">
+				<div className="device-card">
+					<p className={`status-${devices.cpu}`}>CPU: {devices.cpu}</p>
+					<button
+					className="simulator__button"
+					onClick={() => handleRequest("cpu")}
+					disabled={devices.cpu !== "idle"}
+					>
+						Request Bus
+					</button>
+				</div>
+
+				<div className="device-card">
+					<p className={`status-${devices.dma}`}>DMA: {devices.dma}</p>
+					<button
+					className="simulator__button"
+					onClick={() => handleRequest("dma")}
+					disabled={devices.dma !== "idle"}
+					>
+						Request Bus
+					</button>
+				</div>
+
+				<div className="device-card">
+					<p className={`status-${devices.disk}`}>Disk I/O: {devices.disk}</p>
+					<button
+					className="simulator__button"
+					onClick={() => handleRequest("disk")}
+					disabled={devices.disk !== "idle"}
+					>
+						Request Bus
+					</button>
+				</div>
+			</div>
 
 			<div>
 				<h4>Transaction Log</h4>
-				<button onClick={handleClearLog}>Clear Log</button>
-				{log.length === 0 && <p>No activity yet.</p>}
-				{log.map((message, i) => (
+				<button className="simulator__button" onClick={handleClearLog}>
+					Clear Log
+				</button>
+				<div className="simulator__log">
+					{log.length === 0 && <p>No activity yet.</p>}
+					{log.map((message, i) => (
 					<p key={i}>{message}</p>
-				))}
+					))}
+				</div>
 			</div>
 		</div>
 	);
