@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /*
 FIXED PRIORITY
@@ -17,10 +17,12 @@ export default function BusSimulator() {
 		disk: "idle",
 	});
 
+	// Sets device state to requesting if request button is pressed
 	function handleRequest(id) {
 		setDevices((currDevices) => ({ ...currDevices, [id]: "requesting" }));
 	}
 
+	// handles arbitrate button, changes statuses to grant/denied, uses arbbus algos to determine winner
 	function handleArbitrate() {
 		// gets all requesting devices, determines winner
 		const requestingIds = Object.keys(devices).filter((id) => devices[id] === "requesting");
@@ -37,6 +39,28 @@ export default function BusSimulator() {
 			return updDevices;
 		});
 	}
+
+	// implements useEffect, when the devices are granted they have a 2 second timer then go back to idle
+	useEffect(() => {
+		const grantedId = Object.keys(devices).find((id) => devices[id] === "granted");
+		const deniedIds = Object.keys(devices).filter((id) => devices[id] === "denied");
+
+		// no devices with granted or denied status, nothing to do
+		if (!grantedId && deniedIds.length === 0) return;
+
+		const timer = setTimeout(() => {
+			setDevices((currDevices) => {
+				const updDevices = { ...currDevices };
+				if (grantedId) updDevices[grantedId] = "idle";
+				deniedIds.forEach((id) => {
+					updDevices[id] = "idle";
+				});
+				return updDevices;
+			});
+		}, 2000);
+
+		return () => clearTimeout(timer);
+	}, [devices]);
 
 	return (
 		<div>
