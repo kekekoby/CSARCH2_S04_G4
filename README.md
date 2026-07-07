@@ -47,9 +47,9 @@ Some design contributions I had was fixing the text in the content displays we h
 
 ### Jillianne
 <!-- Add your insights and reflection here -->
-- **Aha moments / things learned:**
-- **Challenges faced:**
-- **Creative contributions:**
+- **I gained a better understanding of how bus arbitration works and how different arbitration methods affect the efficiency and device priority. Helping build the simulator also allowed me to connect the theoretical concepts with its implementation.**
+- **One challenge was integrating the simulator with the rest of the exhibit while ensuring that the interactions and visual feedback accurately reflected the behavior of each arbitration mode.**
+- **I helped integrate the interactive bus arbitration into the exhibit**
 
 ### Jacoba
 <!-- Add your insights and reflection here -->
