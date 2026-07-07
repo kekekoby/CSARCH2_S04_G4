@@ -11,15 +11,28 @@ function resolveFixedPriority(requestingIds) {
 }
 
 export default function BusSimulator() {
+	// Whats the current mode being used. defaults to fixed priority
+	const [mode, setMode] = useState("fixed");
+
+	// statuses of each device: idle, requesting, granted, denied
 	const [devices, setDevices] = useState({
 		cpu: "idle",
 		dma: "idle",
 		disk: "idle",
 	});
 
+	// log at the bottom that notes all taken actions
+	const [log, setLog] = useState([]);
+
+	// Adds messages to log
+	function addLog(message) {
+		setLog((currLog) => [...currLog, message]);
+	}
+
 	// Sets device state to requesting if request button is pressed
 	function handleRequest(id) {
 		setDevices((currDevices) => ({ ...currDevices, [id]: "requesting" }));
+		addLog(`${id.toUpperCase()} requested the bus.`);
 	}
 
 	// handles arbitrate button, changes statuses to grant/denied, uses arbbus algos to determine winner
@@ -27,7 +40,10 @@ export default function BusSimulator() {
 		// gets all requesting devices, determines winner
 		const requestingIds = Object.keys(devices).filter((id) => devices[id] === "requesting");
 		const winner = resolveFixedPriority(requestingIds);
-		if (!winner) return;
+		if (!winner){
+			addLog("Arbitrate pressed, but no devices are requesting.");
+			return;
+		}
 
 		// if device won, give it granted status, ortherwise denied
 		setDevices((currDevices) => {
@@ -38,6 +54,8 @@ export default function BusSimulator() {
 			});
 			return updDevices;
 		});
+
+		addLog(`${winner.toUpperCase()} granted the bus.`);
 	}
 
 	// implements useEffect, when the devices are granted they have a 2 second timer then go back to idle
@@ -57,6 +75,7 @@ export default function BusSimulator() {
 				});
 				return updDevices;
 			});
+			addLog(`${grantedId.toUpperCase()} released the bus.`);
 		}, 2000);
 
 		return () => clearTimeout(timer);
@@ -65,6 +84,11 @@ export default function BusSimulator() {
 	return (
 		<div>
 			<h3>Bus Simulator</h3>
+			<select value={mode} onChange={(e) => setMode(e.target.value)}>
+				<option value="fixed">Fixed Priority</option>
+				<option value="roundrobin">Round Robin</option>
+				<option value="daisychain">Daisy Chain</option>
+			</select>
 			<button onClick={handleArbitrate}>Arbitrate</button>
 			<p>CPU: {devices.cpu}</p>
 			<p>DMA: {devices.dma}</p>
@@ -72,6 +96,14 @@ export default function BusSimulator() {
 			<button onClick={() => handleRequest("cpu")}>CPU: Request Bus</button>
 			<button onClick={() => handleRequest("dma")}>DMA: Request Bus</button>
 			<button onClick={() => handleRequest("disk")}>Disk I/O: Request Bus</button>
+
+			<div>
+				<h4>Transaction Log</h4>
+				{log.length === 0 && <p>No activity yet.</p>}
+				{log.map((message, i) => (
+					<p key={i}>{message}</p>
+				))}
+			</div>
 		</div>
 	);
 }
