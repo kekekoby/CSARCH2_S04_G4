@@ -5,51 +5,74 @@ author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Ja
 ---
 
 import "../styles/exhibit-custom.css"
+import BusSimulator from "../components/BusSimulator.jsx"
 export const base = import.meta.env.BASE_URL;
 
 <div class="page-panel">
   <div class="section-layout">
     <aside class="section-aside">
-      <h3>Simulator (Section 4 of 5)</h3>
+      <h3>Simulator (Section 4 of 4)</h3>
       <p><strong>Focus:</strong> Bus Arbiter interactive demo</p>
       <div class="section-nav-grid">
         <a href={`${base}arbitration-modes/`}>Previous: Arbitration Modes</a>
-        <a href={`${base}references/`}>Next: References</a>
+        <a href={base}>Back to title</a>
       </div>
     </aside>
 
+    
     <div class="section-main">
       <span class="slide__eyebrow">Simulator</span>
       <h1>Bus Arbiter Simulator</h1>
 
-      <p>Users see a diagram with:</p>
-      <ul>
-        <li>Three devices: CPU (left), DMA Controller (center), Disk I/O (right)</li>
-        <li>One shared bus (horizontal line connecting all three)</li>
-        <li>Arbiter block (center-top, acting as traffic cop)</li>
-      </ul>
-
-      <div class="sim-placeholder">
-        Placeholder for <code>&lt;BusArbiterSimulator client:load /&gt;</code>
-      </div>
+    <div class="card">
+      <h3>Remember</h3>
+			<p><strong>Fixed Priority:</strong> one device is always first in line, no matter what.</p>
+			<p><strong>Round-Robin:</strong> everyone takes turns, one after another.</p>
+			<p><strong>Daisy Chain:</strong> whoever is closest to the front of the wire gets it first.</p>
+			<h3></h3>
+    </div>
 
       <div class="card">
-        <h3>User interaction flow (proposal-based)</h3>
+        <h3>Steps</h3>
         <ol>
-          <li>User selects arbitration mode (dropdown).</li>
-          <li>User clicks Request Bus on CPU and/or DMA/Disk to queue requests.</li>
+          <li>Select an arbitration mode (dropdown).</li>
+          <li>Click Request Bus on CPU and/or DMA/Disk to queue requests.</li>
           <li>Arbiter processes queue based on selected priority mode.</li>
           <li>Winner turns green and pulse animation travels across the bus.</li>
           <li>After transfer, winner releases bus and next request is handled.</li>
         </ol>
       </div>
 
+      <BusSimulator client:load />
+
       <div class="card">
-        <h3>Planned visual feedback</h3>
+        <h3>Legend</h3>
         <p>
           Requesting device blinks yellow, granted device turns green, denied devices turn
           red and remain in queue. A transaction log displays cycle-by-cycle events.
         </p>
+      </div>
+
+      <div class="card">
+      <h3>Important note</h3>
+				<p>
+				Daisy Chain and Fixed Priority produce the exact same results.
+				Daisy Chain's "queue order" is just each device's physical position along the
+				grant wire, so the device closest to the arbiter is always checked first, then
+				the next, and so on. So with our device layout (CPU, then DMA, then Disk),
+				both modes hand the bus to the same device in the same situations, every time.
+				</p>
+				<p>
+				In real hardware, the two would not behave quite the same. Daisy Chain's grant
+				signal has to physically ripple down the chain wire device by device, so
+				lower priority devices wait longer for the signal to reach them, and a
+				dead or unpowered device partway down the chain would block every device behind
+				it. Fixed Priority, on the other hand, is just a rule inside the arbiter's logic,
+				so every device's request reaches the arbiter at roughly the same speed. This
+				simulation only models who wins, not how long the grant signal takes to travel,
+				so that real-world difference doesn't show up here, even though the two modes
+				are functionally the same in this simulation.
+				</p>
       </div>
     </div>
   </div>
