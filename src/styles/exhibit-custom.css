@@ -102,9 +102,56 @@ body {
     font-size: 0.98rem;
     white-space: nowrap;
     background: #121a33;
+    letter-spacing: 2px;
 
-   letter-spacing: 2px;
     
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.landing__button:hover,
+.landing__button:focus-visible {
+    transform: translateY(-2px);
+
+    border-color: #39ffb6;
+
+    box-shadow:
+        0 0 8px rgba(57, 255, 182, 0.6),
+        0 0 18px rgba(57, 255, 182, 0.45),
+        0 0 30px rgba(57, 255, 182, 0.25);
+
+    background: linear-gradient(
+        90deg,
+        rgba(17, 104, 72, 0.95) 0%,
+        rgba(15, 53, 95, 0.95) 100%
+    );
+}
+
+.landing__continue-item,
+.section-nav-grid a,
+.landing__menu-toggle {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.landing__continue-item:hover,
+.section-nav-grid a:hover,
+.landing__menu-toggle:hover {
+    transform: translateY(-2px);
+
+    border-color: #39ffb6;
+
+    box-shadow:
+        0 0 8px rgba(57, 255, 182, 0.6),
+        0 0 18px rgba(57, 255, 182, 0.45);
+
+    background: #16244a;
 }
 
 .landing__button--primary {
