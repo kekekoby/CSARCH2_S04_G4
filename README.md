@@ -20,6 +20,14 @@
 - Started the Bus Arbiter Simulator component and styling.
 - Polished readability and section headers for the exhibit pages.
 
+### July 10, 2026
+- Acknowledged comments made regarding mid-milestone submission.
+- Initial discussion on plans for improvement regarding mid-milestone comments.
+- Planning on work and discussion of personal schedules.
+
+### July 18, 2026
+- Formal plans and TO-DO list on improvement for the project made.
+
 ---
 
 ## Insights and Reflection
