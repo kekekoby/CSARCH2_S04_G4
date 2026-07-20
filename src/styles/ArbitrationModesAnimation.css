@@ -1,0 +1,48 @@
+/* --------Fixed priorkty------- */
+.signal-diagram-svg {
+	max-width: 500px;
+	margin: 1.5rem auto;
+	display: block;
+}
+
+@keyframes fp-cpu-flash {
+	0%, 40%   { opacity: 1; }
+	50%, 100% { opacity: 0.3; }
+}
+
+@keyframes fp-others-flash {
+	0%, 40%   { opacity: 0.3; }
+	50%, 60%  { opacity: 0.15; }
+	70%, 100% { opacity: 0.3; }
+}
+
+.fp-cpu {
+	animation: fp-cpu-flash 3s infinite;
+}
+
+.fp-dma,
+.fp-disk {
+	animation: fp-others-flash 3s infinite;
+}
+
+/* --------Daisy chain------- */
+
+@keyframes chain-ripple {
+	0%, 10%   { opacity: 0.25; }
+	20%, 30%  { opacity: 1; }
+	40%, 100% { opacity: 0.25; }
+}
+
+.chain-1 {
+	animation: chain-ripple 3s infinite;
+}
+
+.chain-2 {
+	animation: chain-ripple 3s infinite;
+	animation-delay: 0.4s;
+}
+
+.chain-3 {
+	animation: chain-ripple 3s infinite;
+	animation-delay: 0.8s;
+}
