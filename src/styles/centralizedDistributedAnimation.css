@@ -2,20 +2,21 @@
     margin-top:20px;
     padding:20px;
     border-radius:14px;
-    background:#111827;
-    border:1px solid rgba(0,255,255,.25);
+    background:rgba(10,16,38,.7);
+    border:1px solid #273055;
     position:relative;
     overflow:hidden;
 }
 
 .cd-title{
     text-align:center;
-    color:#00ffff;
+    color:#39ffb6;
     margin-bottom:20px;
     font-family:"Orbitron",sans-serif;
-    text-shadow:0 0 10px cyan;
-    font-size: small;
-    
+    letter-spacing:2px;
+    text-shadow:
+        0 0 8px rgba(57,255,182,.65),
+        0 0 18px rgba(57,255,182,.35);
 }
 
 /* ========================= */
@@ -35,13 +36,13 @@
 /* ========================= */
 
 .wire{
-    stroke:#00ffff;
+    stroke:#7fa8ff;
     stroke-width:2;
     opacity:.35;
 }
 
 .grant{
-    stroke:#66ff66;
+    stroke:#39ffb6;
     stroke-width:2;
     opacity:.35;
 }
@@ -49,13 +50,13 @@
 /* ========================= */
 
 .packet{
-    fill:#00ffff;
-    filter:drop-shadow(0 0 6px cyan);
+    fill:#7fa8ff;
+    filter:drop-shadow(0 0 6px #7fa8ff);
 }
 
 .grantPacket{
-    fill:#66ff66;
-    filter:drop-shadow(0 0 6px #66ff66);
+    fill:#39ffb6;
+    filter:drop-shadow(0 0 6px #39ffb6);
 }
 
 /* ========================= */
@@ -64,15 +65,15 @@
 
 .device-box,
 .node-box{
-    fill:#1f2937;
-    stroke:#00ffff;
+    fill:#121a33;
+    stroke:#273055;
     stroke-width:2;
     transition:stroke .3s ease;
 }
 
 .device-label,
 .node-label{
-    fill:#ffffff;
+    fill:#d8e9ff;
     font-size:14px;
     font-family:inherit;
     pointer-events:none;
@@ -81,15 +82,15 @@
 /* -------- ARBITER -------- */
 
 .arbiter-box{
-    fill:#243447;
-    stroke:cyan;
+    fill:#161d38;
+    stroke:#50a2ff;
     stroke-width:2;
     animation:arbiterGlow 2.5s infinite;
     transform-origin:470px 130px;
 }
 
 .arbiter-label{
-    fill:#ffffff;
+    fill:#d8e9ff;
     font-size:14px;
     font-family:inherit;
     pointer-events:none;
@@ -108,7 +109,7 @@
 .caption{
     margin-top:10px;
     text-align:center;
-    color:#cbd5e1;
+    color:#94a2c8;
     font-size:.9rem;
 }
 
@@ -116,27 +117,27 @@
 
 @keyframes arbiterGlow{
     0%{
-        filter:drop-shadow(0 0 4px cyan);
+        filter:drop-shadow(0 0 4px #50a2ff);
     }
     50%{
-        filter:drop-shadow(0 0 10px cyan) drop-shadow(0 0 18px cyan);
+        filter:drop-shadow(0 0 10px #50a2ff) drop-shadow(0 0 18px #50a2ff);
     }
     100%{
-        filter:drop-shadow(0 0 4px cyan);
+        filter:drop-shadow(0 0 4px #50a2ff);
     }
 }
 
 @keyframes winnerGlow{
     0%{
-        stroke:#00ffff;
+        stroke:#7fa8ff;
         filter:none;
     }
     50%{
-        stroke:#66ff66;
-        filter:drop-shadow(0 0 8px #66ff66) drop-shadow(0 0 16px #66ff66);
+        stroke:#39ffb6;
+        filter:drop-shadow(0 0 8px #39ffb6) drop-shadow(0 0 16px #39ffb6);
     }
     100%{
-        stroke:#00ffff;
+        stroke:#7fa8ff;
         filter:none;
     }
 }

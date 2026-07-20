@@ -134,11 +134,6 @@ export default function CentralizedDistributedAnimation() {
             </g>
           </svg>
 
-          <p className="caption">Fixed Priority Arbitration <br/>
-                                All devices send a bus request to the central arbiter. 
-                                The arbiter checks each device's priority and grants bus access to Device 1,
-                                which has the highest priority.
-                                The remaining devices wait for the next opportunity.</p>
         </div>
       ) : (
         <div className="distributed">
