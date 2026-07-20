@@ -35,8 +35,19 @@ function CentralizedDiagram({ rankOf, winner }) {
       <line x1="150" y1="200" x2="360" y2="200" className="wire" />
       <line x1="360" y1={winnerY} x2="150" y2={winnerY} className="grant" />
 
-      {/* BR / BG line labels */}
-      <text x="255" y="52" textAnchor="middle" className="wire-label wire-label--br">BR →</text>
+      {/* BR labels — every device sends a request */}
+      {[1, 2, 3].map((n) => (
+        <text
+          key={`br-label-${n}`}
+          x="255"
+          y={CENTRAL_Y[n] - 8}
+          textAnchor="middle"
+          className="wire-label wire-label--br"
+        >
+          BR →
+        </text>
+      ))}
+      {/* BG label — only the winner receives a grant */}
       <text x="255" y={winnerY + 20} textAnchor="middle" className="wire-label wire-label--bg">← BG</text>
 
       {/* Bus request (BR) packets — every device requests */}
