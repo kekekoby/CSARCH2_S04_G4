@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import BusSimulatorDiagram from "./BusSimulatorDiagram";
 import '../styles/BusSimulator.css';
 
 /*
@@ -50,6 +51,9 @@ export default function BusSimulator() {
 	// log at the bottom that notes all taken actions
 	const [log, setLog] = useState([]);
 
+	// increments on each action to restart SVG packet animations
+	const [animTick, setAnimTick] = useState(0);
+
 	// Adds messages to log
 	function addLog(message) {
 		setLog((currLog) => [...currLog, message]);
@@ -63,6 +67,7 @@ export default function BusSimulator() {
 	// Sets device state to requesting if request button is pressed
 	function handleRequest(id) {
 		setDevices((currDevices) => ({ ...currDevices, [id]: "requesting" }));
+		setAnimTick((t) => t + 1);
 		addLog(`${id.toUpperCase()} requested the bus.`);
 	}
 
@@ -99,6 +104,7 @@ export default function BusSimulator() {
 			return updDevices;
 		});
 
+		setAnimTick((t) => t + 1);
 		addLog(`${winner.toUpperCase()} granted the bus.`);
 	}
 
@@ -149,6 +155,13 @@ export default function BusSimulator() {
 					Arbitrate
 				</button>
 			</div>
+
+			<BusSimulatorDiagram
+				devices={devices}
+				mode={mode}
+				lastGrantedIndex={lastGrantedIndex}
+				animTick={animTick}
+			/>
 
 			<div className="simulator__devices">
 				<div className="device-card">
