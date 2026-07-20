@@ -46,6 +46,65 @@ export const base = import.meta.env.BASE_URL;
           immediate access. <strong>Cons:</strong> low-priority devices may starve (Stallings,
           2016).
         </p>
+
+        <svg class="signal-diagram" viewBox="0 0 500 240" width="100%" style="max-width:500px; margin: 1.5rem auto; display: block;">
+          <defs>
+            <marker id="arrow-fp-cpu" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M1 1L9 5L1 9" fill="none" stroke="#7fa8ff" stroke-width="1.5"/>
+            </marker>
+            <marker id="arrow-fp-dma" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M1 1L9 5L1 9" fill="none" stroke="#8fd6a0" stroke-width="1.5"/>
+            </marker>
+            <marker id="arrow-fp-disk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M1 1L9 5L1 9" fill="none" stroke="#e0b86b" stroke-width="1.5"/>
+            </marker>
+            <marker id="arrow-fp-bg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M9 1L1 5L9 9" fill="none" stroke="#66ff99" stroke-width="1.5"/>
+            </marker>
+          </defs>
+
+          <rect x="340" y="15" width="150" height="210" rx="8" fill="#243447" stroke="cyan" stroke-width="1.5"/>
+          <text x="415" y="110" text-anchor="middle" font-size="11" font-weight="600" fill="#ffffff">Priority</text>
+          <text x="415" y="126" text-anchor="middle" font-size="11" font-weight="600" fill="#ffffff">Encoder</text>
+          <text x="415" y="148" text-anchor="middle" font-size="9" fill="#94a2c8">Grants highest</text>
+          <text x="415" y="160" text-anchor="middle" font-size="9" fill="#94a2c8">priority request</text>
+
+          {/* CPU — Priority 1, wins every cycle */}
+          <g class="fp-cpu">
+            <rect x="10" y="15" width="150" height="50" rx="8" fill="#1e3a5f" stroke="#7fa8ff" stroke-width="1.5"/>
+            <text x="85" y="38" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">CPU</text>
+            <text x="85" y="53" text-anchor="middle" font-size="9" fill="#a9c6ff">Priority 1 (Highest)</text>
+            <line x1="160" y1="30" x2="336" y2="30" stroke="#7fa8ff" stroke-width="1.5" marker-end="url(#arrow-fp-cpu)"/>
+            <text x="248" y="24" text-anchor="middle" font-size="9" fill="#a9c6ff" font-weight="600">BR</text>
+            <line x1="336" y1="50" x2="160" y2="50" stroke="#66ff99" stroke-width="1.5" marker-end="url(#arrow-fp-bg)"/>
+            <text x="248" y="46" text-anchor="middle" font-size="9" fill="#a9e6b8" font-weight="600">BG — GRANTED</text>
+          </g>
+
+          {/* DMA — Priority 2, always pre-empted while the CPU is requesting */}
+          <g class="fp-dma">
+            <rect x="10" y="95" width="150" height="50" rx="8" fill="#1e3a5f" stroke="#8fd6a0" stroke-width="1.5"/>
+            <text x="85" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">DMA Controller</text>
+            <text x="85" y="133" text-anchor="middle" font-size="9" fill="#a9e6b8">Priority 2</text>
+            <line x1="160" y1="120" x2="336" y2="120" stroke="#8fd6a0" stroke-width="1.5" marker-end="url(#arrow-fp-dma)"/>
+            <text x="248" y="114" text-anchor="middle" font-size="9" fill="#a9e6b8" font-weight="600">BR — waiting</text>
+          </g>
+
+          {/* Disk — Priority 3, starves for as long as CPU or DMA keep requesting */}
+          <g class="fp-disk">
+            <rect x="10" y="175" width="150" height="50" rx="8" fill="#1e3a5f" stroke="#e0b86b" stroke-width="1.5"/>
+            <text x="85" y="198" text-anchor="middle" font-size="12" font-weight="600" fill="#ffffff">Disk Controller</text>
+            <text x="85" y="213" text-anchor="middle" font-size="9" fill="#e6cfa1">Priority 3 (Lowest)</text>
+            <line x1="160" y1="200" x2="336" y2="200" stroke="#e0b86b" stroke-width="1.5" marker-end="url(#arrow-fp-disk)"/>
+            <text x="248" y="194" text-anchor="middle" font-size="9" fill="#e6cfa1" font-weight="600">BR — waiting</text>
+          </g>
+        </svg>
+        <p class="image-caption">
+          All three devices assert Bus Request (BR) at the same time. The priority
+          encoder always grants Bus Grant (BG) to the CPU — the DMA and Disk
+          controllers keep re-asserting BR every cycle but are never selected as
+          long as the CPU keeps requesting. This is the starvation risk described
+          above, made visible.
+        </p>
       </div>
 
       <div class="card">
