@@ -8,6 +8,7 @@ import "../styles/exhibit-custom.css"
 import roundRobinImg from '../assets/RoundRobin.png';
 import FixedPriorityAnimation from "../components/FixedPriorityAnimation";
 import DaisyChainAnimation from "../components/DaisyChainAnimation";
+import RoundRobinAnimation from "../components/RoundRobinAnimation";
 
 export const base = import.meta.env.BASE_URL;
 
@@ -62,7 +63,7 @@ export const base = import.meta.env.BASE_URL;
           <strong>Pros:</strong> no starvation, fair and predictable access.
           <strong>Cons:</strong> more complex hardware and urgent devices may wait longer.
         </p>
-
+        <RoundRobinAnimation />
       </div>
 
       <div class="card">
