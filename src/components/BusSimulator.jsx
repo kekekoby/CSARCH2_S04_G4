@@ -143,23 +143,23 @@ export default function BusSimulator() {
 			</div>
 
 			<div className="simulator__workspace">
+				<div className="simulator__controls">
+					<select
+					className="simulator__select"
+					value={mode}
+					onChange={(e) => setMode(e.target.value)}
+					>
+						<option value="fixed">Fixed Priority</option>
+						<option value="roundrobin">Round Robin</option>
+						<option value="daisychain">Daisy Chain</option>
+					</select>
+
+					<button className="simulator__arbitrate" onClick={handleArbitrate}>
+						Arbitrate
+					</button>
+				</div>
+
 				<div className="simulator__diagram-area">
-					<div className="simulator__controls">
-						<select
-						className="simulator__select"
-						value={mode}
-						onChange={(e) => setMode(e.target.value)}
-						>
-							<option value="fixed">Fixed Priority</option>
-							<option value="roundrobin">Round Robin</option>
-							<option value="daisychain">Daisy Chain</option>
-						</select>
-
-						<button className="simulator__arbitrate" onClick={handleArbitrate}>
-							Arbitrate
-						</button>
-					</div>
-
 					<BusSimulatorDiagram
 						devices={devices}
 						mode={mode}

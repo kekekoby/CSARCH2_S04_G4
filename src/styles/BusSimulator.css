@@ -44,15 +44,16 @@
 	flex: 1;
 	display: grid;
 	grid-template-columns: 1fr;
-	gap: 1.25rem;
+	grid-template-rows: auto auto auto;
+	gap: 1rem;
 	min-height: 0;
 }
 
 .simulator__diagram-area {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
 	min-height: 0;
+	height: 100%;
 }
 
 .simulator__interactive {
@@ -158,6 +159,7 @@
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 0.85rem;
+	flex-shrink: 0;
 }
 
 .simulator__log-panel {
@@ -173,6 +175,7 @@
 	justify-content: space-between;
 	gap: 0.75rem;
 	margin-bottom: 0.65rem;
+	flex-shrink: 0;
 }
 
 .simulator__log-header h4 {
@@ -243,9 +246,8 @@
 	border: 1px solid var(--sim-border);
 	border-radius: 10px;
 	padding: 0.75rem 1rem;
-	flex: 1;
-	min-height: 140px;
-	max-height: none;
+	height: 10.5rem;
+	min-height: 10.5rem;
 	overflow-y: auto;
 	font-size: 0.82rem;
 	color: var(--sim-muted);
@@ -363,7 +365,25 @@
 @media (min-width: 900px) {
 	.simulator__workspace {
 		grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr);
+		grid-template-rows: auto 1fr;
 		align-items: stretch;
+	}
+
+	.simulator__controls {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.simulator__diagram-area {
+		grid-column: 1;
+		grid-row: 2;
+		height: 100%;
+	}
+
+	.simulator__interactive {
+		grid-column: 2;
+		grid-row: 2;
+		height: 100%;
 	}
 
 	.simulator__modes {
@@ -377,7 +397,9 @@
 	}
 
 	.simulator__log {
-		min-height: 180px;
+		flex: 1;
+		height: auto;
+		min-height: 0;
 	}
 }
 
