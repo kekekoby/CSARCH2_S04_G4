@@ -5,83 +5,34 @@ author: "Go, Justin; Leung, Jillianne; Luna, Jacoba; Montaño, Rovin; Teoxon, Ja
 ---
 
 import "../styles/exhibit-custom.css"
-import roundRobinImg from '../assets/RoundRobin.png';
-import FixedPriorityAnimation from "../components/FixedPriorityAnimation";
-import DaisyChainAnimation from "../components/DaisyChainAnimation";
-import RoundRobinAnimation from "../components/RoundRobinAnimation";
+import ArbitrationModesExplorer from "../components/ArbitrationModesExplorer.jsx"
 
 export const base = import.meta.env.BASE_URL;
 
-<div class="page-panel">
-  <div class="section-layout">
-    <aside class="section-aside">
+<div class="page-panel simulator-page">
+  <div class="simulator-page__header-row">
+    <aside class="section-aside simulator-page__nav">
       <h3>Arbitration Modes (Section 3 of 5)</h3>
       <p><strong>Focus:</strong> Fixed Priority, Round-Robin, Daisy Chain</p>
       <div class="section-nav-grid">
         <a href={`${base}design-tradeoffs/`}>Previous: Design Trade-offs</a>
         <a href={`${base}simulator/`}>Next: Simulator</a>
       </div>
-
-      <div class="single-image-container">
-        <img 
-          src={roundRobinImg.src} 
-          alt="Round-robin arbitration mode diagram"
-          class="single-image"
-        />
-        
-      </div>
     </aside>
 
-    <div class="section-main">
+    <div class="simulator-page__intro">
       <span class="slide__eyebrow">Arbitration Modes</span>
       <h1>Types of Arbitration Modes</h1>
-
-      <div class="card">
-        <h3>Fixed Priority</h3>
-        <p>
-          The arbiter holds a simple priority encoder. When multiple BR signals are
-          asserted simultaneously, the encoder selects the highest-priority line and
-          asserts BG only for that device. Lower-priority devices receive no grant and
-          must wait.
-        </p>
-        <p>
-          <strong>Pros:</strong> deterministic and simple hardware; critical devices get
-          immediate access. <strong>Cons:</strong> low-priority devices may starve (Stallings,
-          2016).
-        </p>
-        <FixedPriorityAnimation />
-      </div>
-
-      <div class="card">
-        <h3>Round-Robin</h3>
-        <p>
-          The arbiter maintains a rotating pointer. After granting the bus to device N,
-          the pointer advances to N+1, making N+1 highest priority for the next cycle.
-          This guarantees each requester eventually gets access (Tanenbaum &amp; Austin, 2012).
-        </p>
-        <p>
-          <strong>Pros:</strong> no starvation, fair and predictable access.
-          <strong>Cons:</strong> more complex hardware and urgent devices may wait longer.
-        </p>
-        <RoundRobinAnimation />
-      </div>
-
-      <div class="card">
-        <h3>Daisy Chain</h3>
-        <p>
-          A single bus grant wire threads through all devices in sequence. The first
-          requesting device in the chain captures the grant. If it has no request, it
-          passes the grant downstream.
-        </p>
-        <p>
-          <strong>Pros:</strong> very few wires and low hardware cost.
-          <strong>Cons:</strong> priority depends on physical position, propagation delay
-          grows with chain length, and a broken device can break the chain (Null &amp; Lobur,
-          2014).
-        </p>
-
-        <DaisyChainAnimation />
-      </div>
+      <p>
+        Bus arbitration decides which device gets control of the shared bus when several
+        devices request it at the same time. Each mode applies a different policy for
+        resolving these conflicts, trading off fairness, hardware cost, and speed. Choose
+        a mode below to see how it works and watch its signal flow animate.
+      </p>
     </div>
+  </div>
+
+  <div class="simulator-page__body">
+    <ArbitrationModesExplorer client:load />
   </div>
 </div>
