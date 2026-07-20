@@ -61,7 +61,6 @@
 	flex-direction: column;
 	gap: 1rem;
 	min-height: 0;
-	overflow: hidden;
 }
 
 .simulator h3,
@@ -166,9 +165,8 @@
 .simulator__log-panel {
 	display: flex;
 	flex-direction: column;
-	flex: 1 1 0;
+	flex: 0 0 auto;
 	min-height: 0;
-	overflow: hidden;
 }
 
 .simulator__log-header {
@@ -203,14 +201,26 @@
 	text-align: center;
 	background: var(--sim-panel-alt);
 	transition: border-color 0.25s ease, box-shadow 0.25s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 0.75rem;
+	height: 6rem;
 }
 
 .device-card p {
-	margin: 0 0 0.75rem;
+	margin: 0;
 	font-family: "Orbitron", sans-serif;
 	font-size: 0.85rem;
 	letter-spacing: 1px;
 	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.device-card .simulator__button {
+	width: 100%;
 }
 
 .status-idle { color: var(--sim-muted); }
@@ -248,8 +258,9 @@
 	border: 1px solid var(--sim-border);
 	border-radius: 10px;
 	padding: 0.75rem 1rem;
-	height: 10.5rem;
-	max-height: 10.5rem;
+	flex: 0 0 12rem;
+	height: 12rem;
+	max-height: 12rem;
 	overflow-y: auto;
 	overflow-x: hidden;
 	font-size: 0.82rem;
@@ -399,13 +410,6 @@
 	.sim-diagram-wrap {
 		min-height: 380px;
 		padding: 1.5rem;
-	}
-
-	.simulator__log {
-		flex: 1 1 0;
-		height: auto;
-		max-height: none;
-		min-height: 0;
 	}
 }
 
