@@ -126,14 +126,14 @@
 
 .arb-explorer__diagram .signal-diagram-svg {
 	width: 100%;
-	max-width: 760px;
+	max-width: none;
 	height: auto;
 	margin: 0 auto;
 }
 
 @media (min-width: 900px) {
 	.arb-explorer__panel {
-		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr);
+		grid-template-columns: minmax(0, 0.62fr) minmax(0, 2fr);
 		gap: 2.5rem;
 	}
 }
