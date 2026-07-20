@@ -1,0 +1,150 @@
+.cd-container{
+    margin-top:20px;
+    padding:20px;
+    border-radius:14px;
+    background:#111827;
+    border:1px solid rgba(0,255,255,.25);
+    position:relative;
+    overflow:hidden;
+}
+
+.cd-title{
+    text-align:center;
+    color:#00ffff;
+    margin-bottom:20px;
+    font-family:"Orbitron",sans-serif;
+    text-shadow:0 0 10px cyan;
+}
+
+/* ========================= */
+
+.centralized,
+.distributed{
+    position:relative;
+    width:100%;
+}
+
+.diagram{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+/* ========================= */
+
+.wire{
+    stroke:#00ffff;
+    stroke-width:2;
+    opacity:.35;
+}
+
+.grant{
+    stroke:#66ff66;
+    stroke-width:2;
+    opacity:.35;
+}
+
+/* ========================= */
+
+.packet{
+    fill:#00ffff;
+    filter:drop-shadow(0 0 6px cyan);
+}
+
+.grantPacket{
+    fill:#66ff66;
+    filter:drop-shadow(0 0 6px #66ff66);
+}
+
+/* ========================= */
+/* Devices / nodes — now SVG <rect>/<text>, positioned by the JSX to share
+   the exact same coordinate space as the wires (no more px/viewBox mismatch) */
+
+.device-box,
+.node-box{
+    fill:#1f2937;
+    stroke:#00ffff;
+    stroke-width:2;
+    transition:stroke .3s ease;
+}
+
+.device-label,
+.node-label{
+    fill:#ffffff;
+    font-size:14px;
+    font-family:inherit;
+    pointer-events:none;
+}
+
+/* -------- ARBITER -------- */
+
+.arbiter-box{
+    fill:#243447;
+    stroke:cyan;
+    stroke-width:2;
+    animation:arbiterGlow 2.5s infinite;
+    transform-origin:470px 130px;
+}
+
+.arbiter-label{
+    fill:#ffffff;
+    font-size:14px;
+    font-family:inherit;
+    pointer-events:none;
+}
+
+/* ========================= */
+/* Winning device glow — animates stroke + filter since box-shadow
+   has no effect on SVG shapes */
+
+.device.active .device-box{
+    animation:winnerGlow 3s infinite;
+}
+
+/* ========================= */
+
+.caption{
+    margin-top:10px;
+    text-align:center;
+    color:#cbd5e1;
+    font-size:.9rem;
+}
+
+/* ========================= */
+
+@keyframes arbiterGlow{
+    0%{
+        filter:drop-shadow(0 0 4px cyan);
+    }
+    50%{
+        filter:drop-shadow(0 0 10px cyan) drop-shadow(0 0 18px cyan);
+    }
+    100%{
+        filter:drop-shadow(0 0 4px cyan);
+    }
+}
+
+@keyframes winnerGlow{
+    0%{
+        stroke:#00ffff;
+        filter:none;
+    }
+    50%{
+        stroke:#66ff66;
+        filter:drop-shadow(0 0 8px #66ff66) drop-shadow(0 0 16px #66ff66);
+    }
+    100%{
+        stroke:#00ffff;
+        filter:none;
+    }
+}
+
+/* ========================= */
+
+@media(max-width:768px){
+    .device-label,
+    .node-label,
+    .arbiter-label{
+        font-size:12px;
+    }
+}

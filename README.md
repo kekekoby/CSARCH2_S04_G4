@@ -50,6 +50,9 @@ The challenge I faced in this is trying to balance our deadline and other subjec
 
 Some design contributions I had was fixing the text in the content displays we have. Another one is adding diagrams for each section. Though I am not really a creative person, I help out in making our content pleasant and readable to the eye.
 
+Added transitions and animations for the navigation buttons.
+Added animated diagram for centralize arbitration using Fixed priority arbitration.
+
 
 ### Jillianne
 I gained a better understanding of how bus arbitration works and how different arbitration methods affect the efficiency and device priority. Helping build the simulator also allowed me to connect the theoretical concepts with its implementation.
