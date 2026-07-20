@@ -52,6 +52,7 @@ Some design contributions I had was fixing the text in the content displays we h
 
 Added transitions and animations for the navigation buttons.
 Added animated diagram for centralize arbitration using Fixed priority arbitration.
+Adjusted diagram color scheme.
 
 
 ### Jillianne
