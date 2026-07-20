@@ -1,44 +1,51 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import "../styles/centralizedDistributedAnimation.css";
 
 // Shared device lanes for the centralized diagram (y positions).
 const CENTRAL_Y = { 1: 60, 2: 130, 3: 200 };
 
 // Device columns for the distributed diagram (x centers).
-const DIST_DEVICES = [
-  { n: 1, cx: 130, label: "Priority 1 (Highest)" },
-  { n: 2, cx: 300, label: "Priority 2" },
-  { n: 3, cx: 470, label: "Priority 3" },
-];
+const DIST_CX = { 1: 130, 2: 300, 3: 470 };
 
-const STEPS = {
-  centralized: [
-    "Every device sends its bus request (BR) to one central arbiter.",
-    "The arbiter compares all requests in a single place and picks the highest priority.",
-    "It returns a grant (BG) to the winning device; the others keep waiting.",
-  ],
-  distributed: [
-    "Each device places its own priority code onto the shared arbitration lines.",
-    "Every device compares the lines with its own priority — there is no central unit.",
-    "Lower-priority devices withdraw; the highest-priority device wins the bus.",
-  ],
-};
+// Priority order: index 0 is the highest-priority device. All three devices
+// request the bus every cycle, so the winner is simply the highest-priority
+// device. Shuffling this order changes who wins.
+const DEFAULT_ORDER = [1, 2, 3];
 
-function CentralizedDiagram({ winner }) {
+function shuffledOrder(prev) {
+  const arr = [...prev];
+  // Fisher-Yates, retried once if it lands on the same order.
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    for (let i = arr.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    if (arr.join() !== prev.join()) break;
+  }
+  return arr;
+}
+
+function CentralizedDiagram({ rankOf, winner }) {
   const winnerY = CENTRAL_Y[winner];
   return (
     <svg viewBox="0 0 600 260" className="diagram" role="img" aria-label="Centralized arbitration diagram">
+      {/* Request wires (device -> arbiter) and the grant wire (arbiter -> winner) */}
       <line x1="150" y1="60" x2="360" y2="60" className="wire" />
       <line x1="150" y1="130" x2="360" y2="130" className="wire" />
       <line x1="150" y1="200" x2="360" y2="200" className="wire" />
-
       <line x1="360" y1={winnerY} x2="150" y2={winnerY} className="grant" />
 
-      {[60, 130, 200].map((y, i) => (
-        <g key={i}>
-          <circle r="5" className="packet" style={{ opacity: 0 }}>
+      {/* BR / BG line labels */}
+      <text x="255" y="52" textAnchor="middle" className="wire-label wire-label--br">BR →</text>
+      <text x="255" y={winnerY + 20} textAnchor="middle" className="wire-label wire-label--bg">← BG</text>
+
+      {/* Bus request (BR) packets — every device requests */}
+      {[1, 2, 3].map((n) => {
+        const y = CENTRAL_Y[n];
+        return (
+          <circle key={`br-${n}`} r="5" className="packet" style={{ opacity: 0 }}>
             <animateMotion
-              dur="8s"
+              dur="9s"
               repeatCount="indefinite"
               calcMode="linear"
               keyTimes="0;0.125;0.3125;1"
@@ -47,18 +54,19 @@ function CentralizedDiagram({ winner }) {
             />
             <animate
               attributeName="opacity"
-              dur="8s"
+              dur="9s"
               repeatCount="indefinite"
               keyTimes="0;0.124;0.125;0.3125;0.326;1"
               values="0;0;1;1;0;0"
             />
           </circle>
-        </g>
-      ))}
+        );
+      })}
 
-      <circle key={winner} r="5" className="grantPacket" style={{ opacity: 0 }}>
+      {/* Bus grant (BG) packet — travels back only to the highest-priority device */}
+      <circle r="5" className="grantPacket" style={{ opacity: 0 }}>
         <animateMotion
-          dur="8s"
+          dur="9s"
           repeatCount="indefinite"
           calcMode="linear"
           keyTimes="0;0.5;0.6875;1"
@@ -67,32 +75,45 @@ function CentralizedDiagram({ winner }) {
         />
         <animate
           attributeName="opacity"
-          dur="8s"
+          dur="9s"
           repeatCount="indefinite"
           keyTimes="0;0.499;0.5;0.6875;0.6885;1"
           values="0;0;1;1;0;0"
         />
       </circle>
 
-      {[1, 2, 3].map((n) => (
-        <g key={n} className={winner === n ? "device active" : "device"}>
-          <rect x="20" y={CENTRAL_Y[n] - 22} width="110" height="44" rx="8" className="device-box" />
-          <text x="75" y={CENTRAL_Y[n] + 5} textAnchor="middle" className="device-label">
-            Device {n}
-          </text>
-        </g>
-      ))}
+      {[1, 2, 3].map((n) => {
+        const rank = rankOf(n);
+        const isWinner = n === winner;
+        return (
+          <g key={n} className={isWinner ? "device active" : "device"}>
+            {isWinner && (
+              <text x="75" y={CENTRAL_Y[n] - 32} textAnchor="middle" className="device-crown">
+                ★ HIGHEST PRIORITY
+              </text>
+            )}
+            <rect x="20" y={CENTRAL_Y[n] - 24} width="110" height="48" rx="8" className="device-box" />
+            <text x="75" y={CENTRAL_Y[n] - 3} textAnchor="middle" className="device-label">
+              Device {n}
+            </text>
+            <text x="75" y={CENTRAL_Y[n] + 14} textAnchor="middle" className="device-sub">
+              {rank === 1 ? "Priority 1 (Highest)" : `Priority ${rank}`}
+            </text>
+          </g>
+        );
+      })}
 
       <g className="arbiter">
         <rect x="380" y="65" width="180" height="130" rx="12" className="arbiter-box" />
-        <text x="470" y="128" textAnchor="middle" className="arbiter-label">ARBITER</text>
-        <text x="470" y="150" textAnchor="middle" className="arbiter-sub">one shared unit</text>
+        <text x="470" y="122" textAnchor="middle" className="arbiter-label">ARBITER</text>
+        <text x="470" y="142" textAnchor="middle" className="arbiter-sub">one shared unit</text>
+        <text x="470" y="160" textAnchor="middle" className="arbiter-sub">picks highest priority</text>
       </g>
     </svg>
   );
 }
 
-function DistributedDiagram({ winner }) {
+function DistributedDiagram({ rankOf, winner }) {
   const busY = 60;
   const deviceTop = 200;
   return (
@@ -102,7 +123,7 @@ function DistributedDiagram({ winner }) {
       <line x1="60" y1={busY} x2="540" y2={busY} className="cd-bus" />
 
       {/* Compare pulse on the shared bus (phase 2) */}
-      <line key={`bus-${winner}`} x1="60" y1={busY} x2="540" y2={busY} className="cd-bus-glow">
+      <line x1="60" y1={busY} x2="540" y2={busY} className="cd-bus-glow">
         <animate
           attributeName="opacity"
           dur="9s"
@@ -119,15 +140,18 @@ function DistributedDiagram({ winner }) {
         />
       </line>
 
-      {DIST_DEVICES.map((d) => {
-        const isWinner = d.n === winner;
+      {[1, 2, 3].map((n) => {
+        const cx = DIST_CX[n];
+        const rank = rankOf(n);
+        const isWinner = n === winner;
+
         return (
-          <g key={`${d.n}-${winner}`}>
+          <g key={n}>
             {/* Connector from device up to the shared bus */}
             <line
-              x1={d.cx}
+              x1={cx}
               y1={deviceTop}
-              x2={d.cx}
+              x2={cx}
               y2={busY}
               className={isWinner ? "cd-connector cd-connector--win" : "cd-connector"}
             >
@@ -142,7 +166,7 @@ function DistributedDiagram({ winner }) {
               )}
             </line>
 
-            {/* Request/ID packet asserted onto the shared lines (phase 1) */}
+            {/* Priority code asserted onto the shared lines (phase 1) */}
             <circle r="6" className="req-packet" style={{ opacity: 0 }}>
               <animateMotion
                 dur="9s"
@@ -150,7 +174,7 @@ function DistributedDiagram({ winner }) {
                 calcMode="linear"
                 keyTimes="0;0.2;1"
                 keyPoints="0;1;1"
-                path={`M${d.cx} ${deviceTop} L${d.cx} ${busY}`}
+                path={`M${cx} ${deviceTop} L${cx} ${busY}`}
               />
               <animate
                 attributeName="opacity"
@@ -170,7 +194,7 @@ function DistributedDiagram({ winner }) {
                   calcMode="linear"
                   keyTimes="0;0.66;0.82;1"
                   keyPoints="0;0;1;1"
-                  path={`M${d.cx} ${busY} L${d.cx} ${deviceTop}`}
+                  path={`M${cx} ${busY} L${cx} ${deviceTop}`}
                 />
                 <animate
                   attributeName="opacity"
@@ -182,9 +206,16 @@ function DistributedDiagram({ winner }) {
               </circle>
             )}
 
+            {/* Highest-priority badge */}
+            {isWinner && (
+              <text x={cx} y={deviceTop - 30} textAnchor="middle" className="device-crown">
+                ★ HIGHEST PRIORITY
+              </text>
+            )}
+
             {/* Device with its own arbitration logic */}
             <g className={isWinner ? "node dist-node active" : "node dist-node"}>
-              <rect x={d.cx - 60} y={deviceTop} width="120" height="70" rx="10" className="node-box">
+              <rect x={cx - 60} y={deviceTop} width="120" height="70" rx="10" className="node-box">
                 {!isWinner && (
                   <animate
                     attributeName="opacity"
@@ -195,14 +226,16 @@ function DistributedDiagram({ winner }) {
                   />
                 )}
               </rect>
-              <text x={d.cx} y={deviceTop + 28} textAnchor="middle" className="node-label">Device {d.n}</text>
-              <text x={d.cx} y={deviceTop + 46} textAnchor="middle" className="node-sub">{d.label}</text>
-              <text x={d.cx} y={deviceTop + 62} textAnchor="middle" className="node-logic">own arbiter logic</text>
+              <text x={cx} y={deviceTop + 26} textAnchor="middle" className="node-label">Device {n}</text>
+              <text x={cx} y={deviceTop + 44} textAnchor="middle" className="node-sub">
+                {rank === 1 ? "Priority 1 (Highest)" : `Priority ${rank}`}
+              </text>
+              <text x={cx} y={deviceTop + 60} textAnchor="middle" className="node-logic">own arbiter logic</text>
             </g>
 
             {/* Winner / withdraw status tag */}
             <text
-              x={d.cx}
+              x={cx}
               y={deviceTop - 12}
               textAnchor="middle"
               className={isWinner ? "dist-status dist-status--win" : "dist-status dist-status--out"}
@@ -225,16 +258,24 @@ function DistributedDiagram({ winner }) {
 
 export default function CentralizedDistributedAnimation() {
   const [mode, setMode] = useState("centralized");
-  const [winner, setWinner] = useState(1);
+  const [order, setOrder] = useState(DEFAULT_ORDER);
 
-  // Rotate the winning device so the diagram stays lively and shows fairness
-  // over time. Winner change restarts the SMIL packets via React keys.
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWinner((prev) => (prev % 3) + 1);
-    }, 9000);
-    return () => clearInterval(interval);
-  }, []);
+  const winner = order[0];
+  const rankOf = useMemo(() => (n) => order.indexOf(n) + 1, [order]);
+  const cycleKey = order.join("-");
+
+  const steps = {
+    centralized: [
+      "All three devices send a bus request (BR) to one central arbiter.",
+      `The arbiter compares the requests in one place and picks Device ${winner}, which currently has the highest priority.`,
+      `It returns a grant (BG) to Device ${winner}; the other devices keep waiting.`,
+    ],
+    distributed: [
+      "Each device places its own priority code onto the shared arbitration lines.",
+      "Every device compares the lines with its own priority — there is no central unit.",
+      `Lower-priority devices withdraw; Device ${winner} wins the bus because it currently has the highest priority.`,
+    ],
+  };
 
   return (
     <div className="cd-container">
@@ -268,11 +309,20 @@ export default function CentralizedDistributedAnimation() {
           : "No central arbiter — the devices decide among themselves."}
       </p>
 
+      <div className="cd-controls">
+        <button type="button" className="cd-shuffle" onClick={() => setOrder((prev) => shuffledOrder(prev))}>
+          Shuffle priority
+        </button>
+        <span className="cd-priority-readout">
+          Priority order: {order.map((n, i) => `Device ${n}${i < order.length - 1 ? " > " : ""}`).join("")}
+        </span>
+      </div>
+
       <div className="cd-stage">
         {mode === "centralized" ? (
-          <CentralizedDiagram winner={winner} />
+          <CentralizedDiagram key={cycleKey} rankOf={rankOf} winner={winner} />
         ) : (
-          <DistributedDiagram winner={winner} />
+          <DistributedDiagram key={cycleKey} rankOf={rankOf} winner={winner} />
         )}
       </div>
 
@@ -286,8 +336,8 @@ export default function CentralizedDistributedAnimation() {
       </div>
 
       <ol className="cd-steps">
-        {STEPS[mode].map((step, i) => (
-          <li key={i} className="cd-step">{step}</li>
+        {steps[mode].map((stepText, i) => (
+          <li key={i} className="cd-step">{stepText}</li>
         ))}
       </ol>
     </div>

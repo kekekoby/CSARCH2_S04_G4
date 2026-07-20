@@ -60,10 +60,49 @@
     box-shadow:0 0 14px rgba(57,255,182,.4);
 }
 
+/* -------- Shuffle / priority readout -------- */
+
+.cd-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:.75rem 1rem;
+    margin-bottom:14px;
+}
+
+.cd-shuffle{
+    border:1px solid #50a2ff;
+    background:#121a33;
+    color:#d8e9ff;
+    border-radius:10px;
+    padding:.5rem 1.15rem;
+    font-family:"Orbitron",sans-serif;
+    font-size:.8rem;
+    letter-spacing:1.5px;
+    cursor:pointer;
+    transition:border-color .2s ease, box-shadow .2s ease, color .2s ease;
+}
+
+.cd-shuffle:hover{
+    border-color:#39ffb6;
+    color:#39ffb6;
+    box-shadow:0 0 14px rgba(80,162,255,.4);
+}
+
+.cd-priority-readout{
+    color:#a9c6ff;
+    font-size:.85rem;
+    font-family:"Orbitron",sans-serif;
+    letter-spacing:.5px;
+}
+
 /* -------- Stage / legend / steps -------- */
 
 .cd-stage{
     width:100%;
+    max-width:520px;
+    margin:0 auto;
 }
 
 .cd-legend{
@@ -140,6 +179,21 @@
     opacity:.35;
 }
 
+.wire-label{
+    font-size:11px;
+    font-family:"Orbitron",sans-serif;
+    letter-spacing:1px;
+    pointer-events:none;
+}
+
+.wire-label--br{
+    fill:#7fa8ff;
+}
+
+.wire-label--bg{
+    fill:#39ffb6;
+}
+
 /* ========================= */
 
 .packet{
@@ -170,6 +224,33 @@
     font-size:14px;
     font-family:inherit;
     pointer-events:none;
+}
+
+.device-sub{
+    fill:#a9c6ff;
+    font-size:10px;
+    font-family:inherit;
+    pointer-events:none;
+}
+
+.device-crown{
+    fill:#39ffb6;
+    font-size:11px;
+    font-family:"Orbitron",sans-serif;
+    letter-spacing:1px;
+    font-weight:700;
+    pointer-events:none;
+    text-shadow:0 0 8px rgba(57,255,182,.6);
+}
+
+/* Idle devices (not requesting this cycle) are dimmed the whole time */
+.device--idle .device-box{
+    opacity:.4;
+}
+
+.device--idle .device-label,
+.device--idle .device-sub{
+    opacity:.5;
 }
 
 /* -------- ARBITER -------- */
@@ -231,6 +312,10 @@
     filter:drop-shadow(0 0 5px #39ffb6);
 }
 
+.cd-connector--idle{
+    opacity:.18;
+}
+
 .req-packet{
     fill:#7fa8ff;
     filter:drop-shadow(0 0 6px #7fa8ff);
@@ -274,6 +359,21 @@
 
 .dist-status--out{
     fill:#ff8fa3;
+}
+
+.dist-status--idle{
+    fill:#6f80a8;
+}
+
+/* Idle nodes (not requesting this cycle) stay dimmed */
+.dist-node--idle .node-box{
+    opacity:.4;
+}
+
+.dist-node--idle .node-label,
+.dist-node--idle .node-sub,
+.dist-node--idle .node-logic{
+    opacity:.5;
 }
 
 /* ========================= */
