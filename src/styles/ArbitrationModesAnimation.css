@@ -116,13 +116,24 @@
 	letter-spacing: 2px;
 }
 
+.arb-explorer__diagram {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 0;
+}
+
 .arb-explorer__diagram .signal-diagram-svg {
+	width: 100%;
+	max-width: 760px;
+	height: auto;
 	margin: 0 auto;
 }
 
 @media (min-width: 900px) {
 	.arb-explorer__panel {
-		grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-		gap: 2rem;
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr);
+		gap: 2.5rem;
 	}
 }
