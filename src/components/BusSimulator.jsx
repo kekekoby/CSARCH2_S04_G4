@@ -133,83 +133,95 @@ export default function BusSimulator() {
 
 	return (
 		<div className="simulator">
-			<h2>Bus Simulator</h2>
-
-			<h3>Remember</h3>
-			<p><strong>Fixed Priority:</strong> one device is always first in line, no matter what.</p>
-			<p><strong>Round-Robin:</strong> everyone takes turns, one after another.</p>
-			<p><strong>Daisy Chain:</strong> whoever is closest to the front of the wire gets it first.</p>
-			<h3></h3>
-			<div className="simulator__controls">
-				<select
-				className="simulator__select"
-				value={mode}
-				onChange={(e) => setMode(e.target.value)}
-				>
-					<option value="fixed">Fixed Priority</option>
-					<option value="roundrobin">Round Robin</option>
-					<option value="daisychain">Daisy Chain</option>
-				</select>
-
-				<button className="simulator__arbitrate" onClick={handleArbitrate}>
-					Arbitrate
-				</button>
-			</div>
-
-			<BusSimulatorDiagram
-				devices={devices}
-				mode={mode}
-				lastGrantedIndex={lastGrantedIndex}
-				animTick={animTick}
-			/>
-
-			<div className="simulator__devices">
-				<div className="device-card">
-					<p className={`status-${devices.cpu}`}>CPU: {devices.cpu}</p>
-					<button
-					className="simulator__button"
-					onClick={() => handleRequest("cpu")}
-					disabled={devices.cpu !== "idle"}
-					>
-						Request Bus
-					</button>
-				</div>
-
-				<div className="device-card">
-					<p className={`status-${devices.dma}`}>DMA: {devices.dma}</p>
-					<button
-					className="simulator__button"
-					onClick={() => handleRequest("dma")}
-					disabled={devices.dma !== "idle"}
-					>
-						Request Bus
-					</button>
-				</div>
-
-				<div className="device-card">
-					<p className={`status-${devices.disk}`}>Disk I/O: {devices.disk}</p>
-					<button
-					className="simulator__button"
-					onClick={() => handleRequest("disk")}
-					disabled={devices.disk !== "idle"}
-					>
-						Request Bus
-					</button>
+			<div className="simulator__header">
+				<h2>Bus Simulator</h2>
+				<div className="simulator__modes">
+					<p><strong>Fixed Priority:</strong> one device is always first in line, no matter what.</p>
+					<p><strong>Round-Robin:</strong> everyone takes turns, one after another.</p>
+					<p><strong>Daisy Chain:</strong> whoever is closest to the front of the wire gets it first.</p>
 				</div>
 			</div>
 
-			<div>
-				<h4>Transaction Log</h4>
-				<button className="simulator__button" onClick={handleClearLog}>
-					Clear Log
-				</button>
-				<div className="simulator__log">
-					{log.length === 0 && <p>No activity yet.</p>}
-					{log.map((message, i) => (
-					<p key={i}>{message}</p>
-					))}
+			<div className="simulator__workspace">
+				<div className="simulator__diagram-area">
+					<div className="simulator__controls">
+						<select
+						className="simulator__select"
+						value={mode}
+						onChange={(e) => setMode(e.target.value)}
+						>
+							<option value="fixed">Fixed Priority</option>
+							<option value="roundrobin">Round Robin</option>
+							<option value="daisychain">Daisy Chain</option>
+						</select>
+
+						<button className="simulator__arbitrate" onClick={handleArbitrate}>
+							Arbitrate
+						</button>
+					</div>
+
+					<BusSimulatorDiagram
+						devices={devices}
+						mode={mode}
+						lastGrantedIndex={lastGrantedIndex}
+						animTick={animTick}
+					/>
 				</div>
 
+				<div className="simulator__interactive">
+					<div className="simulator__devices">
+						<div className="device-card">
+							<p className={`status-${devices.cpu}`}>CPU: {devices.cpu}</p>
+							<button
+							className="simulator__button"
+							onClick={() => handleRequest("cpu")}
+							disabled={devices.cpu !== "idle"}
+							>
+								Request Bus
+							</button>
+						</div>
+
+						<div className="device-card">
+							<p className={`status-${devices.dma}`}>DMA: {devices.dma}</p>
+							<button
+							className="simulator__button"
+							onClick={() => handleRequest("dma")}
+							disabled={devices.dma !== "idle"}
+							>
+								Request Bus
+							</button>
+						</div>
+
+						<div className="device-card">
+							<p className={`status-${devices.disk}`}>Disk I/O: {devices.disk}</p>
+							<button
+							className="simulator__button"
+							onClick={() => handleRequest("disk")}
+							disabled={devices.disk !== "idle"}
+							>
+								Request Bus
+							</button>
+						</div>
+					</div>
+
+					<div className="simulator__log-panel">
+						<div className="simulator__log-header">
+							<h4>Transaction Log</h4>
+							<button className="simulator__button" onClick={handleClearLog}>
+								Clear Log
+							</button>
+						</div>
+						<div className="simulator__log">
+							{log.length === 0 && <p>No activity yet.</p>}
+							{log.map((message, i) => (
+							<p key={i}>{message}</p>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div className="simulator__notes">
 				<h3>Important note</h3>
 				<p>
 				Daisy Chain and Fixed Priority produce the exact same results.
