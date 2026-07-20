@@ -432,21 +432,17 @@ body {
 .sig-bg   { animation: signal-pulse 6s infinite; animation-delay: 3s; }
 .sig-bbsy { animation: signal-pulse 6s infinite; animation-delay: 4.5s; }
 
-/* Animated diagrams: arbitration-modes.mdx */
-@keyframes fp-cpu-flash    { 0%,40% { opacity: 1; }  50%,100% { opacity: 0.3; } }
-@keyframes fp-others-flash { 0%,40% { opacity: 0.3; } 50%,60% { opacity: 0.15; } 70%,100% { opacity: 0.3; } }
-.fp-cpu  { animation: fp-cpu-flash 3s infinite; }
-.fp-dma, .fp-disk { animation: fp-others-flash 3s infinite; }
-
-@keyframes rr-pointer {
-	0%, 30%  { transform: translateX(0px); }
-	33%, 63% { transform: translateX(120px); }
-	66%, 96% { transform: translateX(240px); }
-	100%     { transform: translateX(0px); }
+/* Animated diagram: bus-conflict.mdx --- */
+@keyframes conflict-flash {
+	0%, 100% { stroke: #e24b4a; opacity: 0.5; }
+	50%      { stroke: #ff8a89; opacity: 1; }
 }
-.rr-pointer { animation: rr-pointer 4.5s infinite; }
-
-@keyframes chain-ripple { 0%,10% { opacity: 0.25; } 20%,30% { opacity: 1; } 40%,100% { opacity: 0.25; } }
-.chain-1 { animation: chain-ripple 3s infinite; }
-.chain-2 { animation: chain-ripple 3s infinite; animation-delay: 0.4s; }
-.chain-3 { animation: chain-ripple 3s infinite; animation-delay: 0.8s; }
+@keyframes conflict-pulse {
+	0%, 100% { opacity: 0.4; transform: scale(1); }
+	50%      { opacity: 1;   transform: scale(1.15); }
+}
+.conflict-diagram line { stroke: #7fa8ff; }
+.conflict-diagram text { fill: #d8e9ff; }
+.bus-line { stroke: #e24b4a; }
+.conflict-zone { animation: conflict-flash 1.2s infinite; }
+.conflict-icon { animation: conflict-pulse 1.2s infinite; transform-origin: 250px 150px; }
