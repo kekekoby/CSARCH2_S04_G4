@@ -67,9 +67,9 @@ I did the implementation of fixed priority and daisy chain, the implementation o
 
 ### Jat
 <!-- Add your insights and reflection here -->
-- **Aha moments / things learned:**
-- **Challenges faced:**
-- **Creative contributions:**
+- **Aha moments / things learned:** Round robin arbitration is essentially a queue that stores the memory of who's next in line once the cycle is done.
+- **Challenges faced:** Perhaps the biggest challenge of all in making this project and in coding in general is proper communication between team members. There were times when one of us was working on a certain aspect of the site only for someone else to mention that they were working on it as well. This has shown the value of coordination as time spent doing one thing by multiple members could have been used instead on something else.
+- **Creative contributions:** I initially created the rough draft of what the website could look like on Canva.
 
 ---
 
