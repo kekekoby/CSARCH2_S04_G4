@@ -58,15 +58,7 @@ export const busImages = [
         lifts the BBSY.
       </p>
 
-      <div class="card">
-        <h3>Why this matters</h3>
-        <p>
-          This method not only ensures that bus conflicts will not occur, but also that
-          the bus is used in an orderly manner and all requests are handled systematically.
-        </p>
-      </div>
-
-      <svg class="signal-diagram" viewBox="0 0 400 100" width="100%" style="max-width:400px; margin: 1.5rem auto; display: block;">
+      <svg class="signal-diagram" viewBox="0 0 600 100" width="100%" style="max-width:600px; margin: 1.5rem auto; display: block;">
         <defs>
           <marker id="arrow-br" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
             <path d="M1 1L9 5L1 9" fill="none" stroke="#7fa8ff" stroke-width="1.5"/>
@@ -82,21 +74,36 @@ export const busImages = [
         <rect x="10" y="10" width="110" height="70" rx="8" fill="#1e3a5f" stroke="#7fa8ff" stroke-width="1.5"/>
         <text x="65" y="49" text-anchor="middle" font-size="12" font-weight="600">Device</text>
 
-        <rect x="280" y="10" width="110" height="70" rx="8" fill="#4a3a1f" stroke="#e0b86b" stroke-width="1.5"/>
-        <text x="335" y="49" text-anchor="middle" font-size="12" font-weight="600">Arbiter</text>
+        <rect x="245" y="10" width="110" height="70" rx="8" fill="#4a3a1f" stroke="#e0b86b" stroke-width="1.5"/>
+        <text x="300" y="49" text-anchor="middle" font-size="12" font-weight="600">Arbiter</text>
 
-        <line class="sig-br" x1="128" y1="28" x2="272" y2="28" stroke-width="1.5"
+        <rect x="480" y="10" width="110" height="70" rx="8" fill="#1e3a5f" stroke="#7fa8ff" stroke-width="1.5"/>
+        <text x="535" y="49" text-anchor="middle" font-size="12" font-weight="600">Device B</text>
+
+        <line class="sig-br" x1="128" y1="28" x2="237" y2="28" stroke-width="1.5"
           stroke="#7fa8ff" marker-end="url(#arrow-br)"/>
-        <text x="200" y="21" text-anchor="middle" font-size="10" fill="#a9c6ff" font-weight="600">BR</text>
+        <text x="182" y="21" text-anchor="middle" font-size="10" fill="#a9c6ff" font-weight="600">BR</text>
 
-        <line class="sig-bg" x1="272" y1="48" x2="128" y2="48" stroke-width="1.5"
+        <line class="sig-bg" x1="237" y1="48" x2="128" y2="48" stroke-width="1.5"
           stroke="#8fd6a0" marker-end="url(#arrow-bg)"/>
-        <text x="200" y="41" text-anchor="middle" font-size="10" fill="#a9e6b8" font-weight="600">BG</text>
+        <text x="182" y="41" text-anchor="middle" font-size="10" fill="#a9e6b8" font-weight="600">BG</text>
 
-        <line class="sig-bbsy" x1="128" y1="68" x2="272" y2="68" stroke-width="1.5"
+        <line class="sig-bbsy" x1="128" y1="68" x2="237" y2="68" stroke-width="1.5"
           stroke="#c99bf0" marker-end="url(#arrow-bbsy)"/>
-        <text x="200" y="61" text-anchor="middle" font-size="10" fill="#d9bdf5" font-weight="600">BBSY</text>
+        <text x="182" y="61" text-anchor="middle" font-size="10" fill="#d9bdf5" font-weight="600">BBSY</text>
+
+        <line class="sig-br2" x1="472" y1="45" x2="363" y2="45" stroke-width="1.5"
+          stroke="#7fa8ff" marker-end="url(#arrow-br)"/>
+        <text x="418" y="38" text-anchor="middle" font-size="10" fill="#a9c6ff" font-weight="600">BR</text>
       </svg>
+
+      <div class="card">
+        <h3>Why this matters</h3>
+        <p>
+          This method not only ensures that bus conflicts will not occur, but also that
+          the bus is used in an orderly manner and all requests are handled systematically.
+        </p>
+      </div>
     </div>
   </div>
 </div>
