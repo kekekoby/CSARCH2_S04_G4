@@ -75,11 +75,11 @@
 - **Creative contributions:** I did the implementation of fixed priority and daisy chain, the implementation of the simulation, and the respective CSS for it. I implemented some of the animated diagrams and helped with the CSS of the simulation. 
 
 ### Jat
-- **Aha moments / things learned:** Round robin arbitration is essentially a queue that stores the memory of who's next in line once the cycle is done.
+- **Aha moments / things learned:** Round robin arbitration is essentially a queue that stores the memory of who's next in line once each cycle is done.
 
 - **Challenges faced:** Perhaps the biggest challenge of all in making this project and in coding in general is proper communication between team members. There were times when one of us was working on a certain aspect of the site only for someone else to mention that they were working on it as well. This has shown the value of coordination as time spent doing one thing by multiple members could have been used instead on something else.
 
-- **Creative contributions:** I initially created the rough draft of what the website could look like on Canva.
+- **Creative contributions:** I initially created the rough draft of what the website could look like on Canva. Even as the group decided to go with a different theme to match the overall layout of the site, I still aided in the UI side of things, namely the round-robin animated diagram.
 
 ---
 
