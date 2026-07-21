@@ -21,12 +21,13 @@
 - Polished readability and section headers for the exhibit pages.
 
 ### July 10, 2026
-- Acknowledged comments made regarding mid-milestone submission.
+- Acknowledged comments made regarding mid-milestone submission as a group.
 - Initial discussion on plans for improvement regarding mid-milestone comments.
-- Planning on work and discussion of personal schedules.
+- Compared personal schedules to find a time block where members are free to contribute.
 
 ### July 18, 2026
-- Formal plans and TO-DO list on improvement for the project made.
+- Formalized a TO-DO list based on discussions during July 10.
+- Assigned rough ownership of each TO-DO item among group members.
 
 ### July 19, 2026
 - Animated diagrams for all pages made.
@@ -91,6 +92,33 @@
 - Improve **design cohesion** across all pages (we rushed some styling decisions).
 - Finalize and proofread section content so wording matches the approved proposal where needed.
 - Test navigation and deployment on GitHub Pages end-to-end.
+
+---
+
+## Technical Discussions
+
+- **Simulator and Design Trade-offs redesign:** Following mid-milestone feedback
+  that the site needed to be more interactive, the static arbitration-mode images
+  were replaced with a dropdown explorer (Fixed Priority, Round-Robin, Daisy
+  Chain), and the static Design Trade-offs diagram was replaced with an
+  interactive Centralized vs. Distributed simulation (toggle, walkthrough,
+  priority badges).
+
+---
+
+## Creative/Design Discussions
+
+- **Visual theme:** The group discussed several possible visual directions before
+  settling on a retro-futuristic theme (sourced via Pinterest moodboarding), chosen
+  for fitting the "systems/hardware" subject matter without feeling as sterile as a
+  plain technical document.
+- **Content structure:** The group weighed a single long-scroll page against
+  splitting content into separate section pages, and chose separate pages to keep
+  each arbitration mode digestible and avoid overwhelming visitors with text.
+- **Simulator visual language:** Discussed and agreed on a consistent color/state
+  system across the simulator (yellow = requesting, green = granted, red = denied/
+  queued, gray = idle) so the interaction is legible without needing to read the
+  transaction log.
 
 ---
 
