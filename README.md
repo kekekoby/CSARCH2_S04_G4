@@ -65,7 +65,7 @@
 
 - **Challenges faced:** One challenge was integrating the simulator with the rest of the exhibit while ensuring that the interactions and visual feedback accurately reflected the behavior of each arbitration mode.
 
-- **Creative contributions:** I helped integrate the interactive bus arbitration into the exhibit
+- **Creative contributions:** I helped integrate the interactive bus arbitration into the exhibit. I have also added animated diagrams for fixed priority and daisy chain under arbitration modes.
 
 ### Jacoba
 - **Aha moments / things learned:** This project gave me more insight into bus arbitration and the different methods. I found it to be very interesting, and once again am really interested in the simple but effective way a lot of computer systems work.
