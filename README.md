@@ -272,5 +272,5 @@ Our team has chosen the following components and frameworks for our tech stack w
 6. **Animation: Motion (Formerly Framer Motion)**
    - Motion will be used for specific animations that will portray data as pulses traveling through the buses, mentioned in our interaction flow. It can help with smooth, hardware-accelerated animations that are easier to program than raw CSS keyframes.
 
-![Style Guide Snapshot](%5BGROUP%204%5D%20Snapshot%20Style%20Guide.png)
+![Style Guide Snapshot](docs/%5BGROUP%204%5D%20Snapshot%20Style%20Guide.png)
 
