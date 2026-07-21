@@ -1,7 +1,7 @@
 # Incremental README — Development Log
 
 **Group 4:** Go, Justin · Leung, Jillianne · Luna, Jacoba · Montaño, Rovin · Teoxon, Jat  
-**Exhibit:** A Deep Dive Into the Bus System  
+**Exhibit:** A Deep Dive Into the Bus Arbitration System  
 **Deployment Link:** https://kekekoby.github.io/CSARCH2_S04_G4/
 
 ---
