@@ -2,7 +2,7 @@
 
 **Group 4:** Go, Justin · Leung, Jillianne · Luna, Jacoba · Montaño, Rovin · Teoxon, Jat  
 **Exhibit:** A Deep Dive Into the Bus System  
-**Last updated:** July 7, 2026
+**Deployment Link:** https://kekekoby.github.io/CSARCH2_S04_G4/
 
 ---
 
@@ -28,48 +28,57 @@
 ### July 18, 2026
 - Formal plans and TO-DO list on improvement for the project made.
 
+### July 19, 2026
+- Animated diagrams for all pages made.
+- Simulation redesigned and improved.
+- Revamp of site's CSS.
+
+### July 20, 2026
+- Repository cleaned up, all unnecessary files removed.
+- Final edits on webpage.
+- Polished README.
+
 ---
 
 ## Insights and Reflection
 
 ### Rovin
-Our struggles were definitely rooted in synchronizing our free time as a group. Even though we had an entire week to accomplish the project, we still only started planning and moving about during the weekend after the passing of Milestone #2.
+- **Aha moments / things learned:** Our struggles were definitely rooted in synchronizing our free time as a group. Even though we had an entire week to accomplish the project, we still only started planning and moving about during the weekend after the passing of Milestone #2.
+- As a retaker of this course, I realized how hectic the academic load was for the second years I am taking the class with, and also for me as someone nearing the end of my third year and taking this class for a second time.
 
-As a retaker of this course, I realized how hectic the academic load was for the second years I am taking the class with, and also for me as someone nearing the end of my third year and taking this class for a second time.
+- **Challenges faced:** Definitely, one challenge for me was learning about Astro since I had not encountered it before, but it is actually easier to adapt once you get the hang of it compared to other frameworks. I learned that Astro and MDX work well for mixing content with interactive components, but routing needs extra care—especially with GitHub Pages base paths, where links can break if they are not base-aware.
+- Another problem I faced was how to shorten the content while keeping it complete, since I realized that content that was too text-heavy may turn off those who will look at the exhibit. Splitting the exhibit into separate section pages instead of one long scroll helped make it feel more guided and readable.
+- Designing the website was also challenging since I had to search Pinterest for a theme I would like to incorporate, and I ended up with a retro-futuristic style. We also had to work around template restrictions (we could not edit `global.css` or layout files), so I moved our custom styling into `exhibit-custom.css` and dealt with CSS conflicts between the template defaults and our design. That took more trial and error than expected, but it helped us keep a distinct look without breaking the required template structure.
 
-Definitely, one challenge for me was learning about Astro since I had not encountered it before, but it is actually easier to adapt once you get the hang of it compared to other frameworks. I learned that Astro and MDX work well for mixing content with interactive components, but routing needs extra care—especially with GitHub Pages base paths, where links can break if they are not base-aware.
-
-Another problem I faced was how to shorten the content while keeping it complete, since I realized that content that was too text-heavy may turn off those who will look at the exhibit. Splitting the exhibit into separate section pages instead of one long scroll helped make it feel more guided and readable.
-
-Designing the website was also challenging since I had to search Pinterest for a theme I would like to incorporate, and I ended up with a retro-futuristic style. We also had to work around template restrictions (we could not edit `global.css` or layout files), so I moved our custom styling into `exhibit-custom.css` and dealt with CSS conflicts between the template defaults and our design. That took more trial and error than expected, but it helped us keep a distinct look without breaking the required template structure.
+- **Creative contributions:** 
 
 ### Justin
-This project introduced to me astro and the other components needed for this project. Though I am not familiar with them, atleast they have similar syntax to other languages I know. 
+- **Aha moments / things learned:** This project introduced to me astro and the other components needed for this project. Though I am not familiar with them, atleast they have similar syntax to other languages I know. 
 
-The challenge I faced in this is trying to balance our deadline and other subjects deadlines. Another challenge was also trying to learn how to use the tools needed for this project.
+- **Challenges faced:** The challenge I faced in this is trying to balance our deadline and other subjects deadlines. Another challenge was also trying to learn how to use the tools needed for this project.
 
-Some design contributions I had was fixing the text in the content displays we have. Another one is adding diagrams for each section. Though I am not really a creative person, I help out in making our content pleasant and readable to the eye.
-
-Added transitions and animations for the navigation buttons.
-Added animated diagram for centralize arbitration using Fixed priority arbitration.
-Adjusted diagram color scheme.
+- **Creative contributions:** Some design contributions I had was fixing the text in the content displays we have. Another one is adding diagrams for each section. Though I am not really a creative person, I help out in making our content pleasant and readable to the eye. Added transitions and animations for the navigation buttons. Added animated diagram for centralize arbitration using Fixed priority arbitration. Adjusted diagram color scheme.
 
 
 ### Jillianne
-I gained a better understanding of how bus arbitration works and how different arbitration methods affect the efficiency and device priority. Helping build the simulator also allowed me to connect the theoretical concepts with its implementation.
-One challenge was integrating the simulator with the rest of the exhibit while ensuring that the interactions and visual feedback accurately reflected the behavior of each arbitration mode.
-I helped integrate the interactive bus arbitration into the exhibit
+- **Aha moments / things learned:** I gained a better understanding of how bus arbitration works and how different arbitration methods affect the efficiency and device priority. Helping build the simulator also allowed me to connect the theoretical concepts with its implementation.
+
+- **Challenges faced:** One challenge was integrating the simulator with the rest of the exhibit while ensuring that the interactions and visual feedback accurately reflected the behavior of each arbitration mode.
+
+- **Creative contributions:** I helped integrate the interactive bus arbitration into the exhibit
 
 ### Jacoba
-- **Aha moments / things learned:**
-This project gave me more insight into bus arbitration and the different methods. I found it to be very interesting, and once again am really interested in the simple but effective way a lot of computer systems work.
-A problem I faced was mostly in terms of time management. I had originally planned to start working on this way back in ILW, but unfortunately got a sickness during that time. Other than that, better communication from the group would have benefited the project.
-I did the implementation of fixed priority and daisy chain, the implementation of the simulation, and the respective CSS for it.
+- **Aha moments / things learned:** This project gave me more insight into bus arbitration and the different methods. I found it to be very interesting, and once again am really interested in the simple but effective way a lot of computer systems work.
+
+- **Challenges faced:** A problem I faced was mostly in terms of time management. I had originally planned to start working on this way back in ILW, but unfortunately got a sickness during that time. Other than that, better communication from the group would have benefited the project.
+
+- **Creative contributions:** I did the implementation of fixed priority and daisy chain, the implementation of the simulation, and the respective CSS for it. I implemented some of the animated diagrams and helped with the CSS of the simulation. 
 
 ### Jat
-<!-- Add your insights and reflection here -->
 - **Aha moments / things learned:** Round robin arbitration is essentially a queue that stores the memory of who's next in line once the cycle is done.
+
 - **Challenges faced:** Perhaps the biggest challenge of all in making this project and in coding in general is proper communication between team members. There were times when one of us was working on a certain aspect of the site only for someone else to mention that they were working on it as well. This has shown the value of coordination as time spent doing one thing by multiple members could have been used instead on something else.
+
 - **Creative contributions:** I initially created the rough draft of what the website could look like on Canva.
 
 ---
@@ -77,31 +86,20 @@ I did the implementation of fixed priority and daisy chain, the implementation o
 ## Things To Be Done (Final Submission)
 
 ### Group-wide priorities
-- [ ] Iron out the **Bus Arbiter Simulator** (request/grant/release flow, queue behavior, and transaction log).
-- [ ] Make the website **more interactive** beyond static text sections.
-- [ ] Improve **design cohesion** across all pages (we rushed some styling decisions).
-- [ ] Finalize and proofread section content so wording matches the approved proposal where needed.
-- [ ] Test navigation and deployment on GitHub Pages end-to-end.
+- Iron out the **Bus Arbiter Simulator** (request/grant/release flow, queue behavior, and transaction log).
+- Make the website **more interactive** beyond static text sections.
+- Improve **design cohesion** across all pages (we rushed some styling decisions).
+- Finalize and proofread section content so wording matches the approved proposal where needed.
+- Test navigation and deployment on GitHub Pages end-to-end.
 
-### Justin
-<!-- Add your final submission tasks here -->
-- [ ]
+---
 
-### Jillianne
-<!-- Add your final submission tasks here -->
-- [ ]
+### AI Usage Disclosure
+In the development of this output, AI tools were utilized for assistance in some aspects. The tools in question are: Google Gemini and Claude Sonnet 5.
+- Shorten the text and information in our project proposal to be digestable in the final website.
+- Debug and troubleshoot issues involving the CSS of the project.
 
-### Jacoba
-<!-- Add your final submission tasks here -->
-- [ ]
-
-### Rovin
-<!-- Add your final submission tasks here -->
-- [ ]
-
-### Jat
-<!-- Add your final submission tasks here -->
-- [ ]
+All technical claims and information present in the final output were reviewed and cited using references listed below. All AI tools used exlusively assisted in debugging and summarization of human-written research and information written by the group, of which is available in the project proposal. All code and information included in this submission are all reviewed by all members.
 
 ---
 
