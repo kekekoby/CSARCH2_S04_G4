@@ -50,7 +50,7 @@
 - Another problem I faced was how to shorten the content while keeping it complete, since I realized that content that was too text-heavy may turn off those who will look at the exhibit. Splitting the exhibit into separate section pages instead of one long scroll helped make it feel more guided and readable.
 - Designing the website was also challenging since I had to search Pinterest for a theme I would like to incorporate, and I ended up with a retro-futuristic style. We also had to work around template restrictions (we could not edit `global.css` or layout files), so I moved our custom styling into `exhibit-custom.css` and dealt with CSS conflicts between the template defaults and our design. That took more trial and error than expected, but it helped us keep a distinct look without breaking the required template structure.
 
-- **Creative contributions:** 
+- **Creative contributions:** Led the exhibit’s structure and look: multi-page layout, retro-futuristic theme via `exhibit-custom.css`, landing hero/nav, citations, and the References page. Integrated and later rebuilt the Bus Arbiter Simulator with animated SVG signal packets, device highlights, and a stable scrollable log/layout. Standardized Simulator, Arbitration Modes, and Design Trade-offs into a two-column header plus full-width interactive area. Replaced static Arbitration Modes images with a dropdown explorer (Fixed Priority, Round-Robin, Daisy Chain), and replaced the Design Trade-offs diagram with an interactive Centralized vs. Distributed simulation (toggle, walkthrough, priority badges, shuffle-priority). Fixed GitHub Pages base-path linking and CI action versions, reviewed arbitration logic for correctness, and merged the bus-animation branch into main.
 
 ### Justin
 - **Aha moments / things learned:** This project introduced to me astro and the other components needed for this project. Though I am not familiar with them, atleast they have similar syntax to other languages I know. This project also introduced me more about bus arbitrations and its different methods, which for me is very interesting to learn.
@@ -243,9 +243,6 @@ Our team has chosen the following components and frameworks for our tech stack w
 
 6. **Animation: Motion (Formerly Framer Motion)**
    - Motion will be used for specific animations that will portray data as pulses traveling through the buses, mentioned in our interaction flow. It can help with smooth, hardware-accelerated animations that are easier to program than raw CSS keyframes.
-
-7. **Text Layout Engine: Pretext.js**
-   - We chose Pretext.js for layouting and positioning dynamic, real-time explanations and educational overlays while the simulation is running. As the simulator runs, we will display contextual explanations detailing exactly why a device is granted or denied access based on the current arbitration mode. Because these explanation blocks will constantly shift in size and length, Pretext.js calculates their text heights and line breaks using pure arithmetic instead of querying the DOM.
 
 ![Style Guide Snapshot](%5BGROUP%204%5D%20Snapshot%20Style%20Guide.png)
 
