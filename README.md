@@ -53,9 +53,9 @@
 - **Creative contributions:** 
 
 ### Justin
-- **Aha moments / things learned:** This project introduced to me astro and the other components needed for this project. Though I am not familiar with them, atleast they have similar syntax to other languages I know. 
+- **Aha moments / things learned:** This project introduced to me astro and the other components needed for this project. Though I am not familiar with them, atleast they have similar syntax to other languages I know. This project also introduced me more about bus arbitrations and its different methods, which for me is very interesting to learn.
 
-- **Challenges faced:** The challenge I faced in this is trying to balance our deadline and other subjects deadlines. Another challenge was also trying to learn how to use the tools needed for this project.
+- **Challenges faced:** The challenge I faced in this is trying to balance our deadline and other subjects deadlines. Another challenge was also trying to learn how to use the tools needed for this project. As the project comes to an end one big challenge that really affected me was the academic work load I have, though it is doable, the stress of having multiple projects due in close proximity was exhausting, but a good lesson in proper time management.
 
 - **Creative contributions:** Some design contributions I had was fixing the text in the content displays we have. Another one is adding diagrams for each section. Though I am not really a creative person, I help out in making our content pleasant and readable to the eye. Added transitions and animations for the navigation buttons. Added animated diagram for centralize arbitration using Fixed priority arbitration. Adjusted diagram color scheme.
 
